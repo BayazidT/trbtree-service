@@ -62,7 +62,7 @@ public class AuthenticationService {
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)
-                .disabled(!rt.getUser().isActive() || rt.getUser().isDeleted())
+                .disabled(!rt.getUser().isActive())
                 .build();
 
         String newAccess = jwtService.generateToken(userDetails);
@@ -93,7 +93,7 @@ public class AuthenticationService {
                 dbUser.getId(),
                 dbUser.getUsername(),
                 dbUser.getEmail(),
-                dbUser.getName(),
+                dbUser.getDisplayName(),
                 roleNames,
                 permissionNames
         );

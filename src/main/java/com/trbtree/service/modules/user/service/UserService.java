@@ -68,7 +68,7 @@ public class UserService {
 
     public void delete(UUID id) {
         User user = userRepository.findActiveUserById(id).orElseThrow(() -> new DataNotFoundException("User not found"));
-        user.setDeleted(true);
+//        user.setDeleted(true);
         user.setActive(false);
         userRepository.save(user);
     }

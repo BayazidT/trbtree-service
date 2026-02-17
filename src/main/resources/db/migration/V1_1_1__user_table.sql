@@ -22,6 +22,7 @@ CREATE TABLE users (
 
                        email_verified      BOOLEAN         NOT NULL DEFAULT FALSE,
                        phone_verified      BOOLEAN         NOT NULL DEFAULT FALSE,     -- if you support phone auth
+                       is_active      BOOLEAN         NOT NULL DEFAULT TRUE,
 
     -- Security tracking
                        failed_login_attempts   INTEGER         NOT NULL DEFAULT 0,
