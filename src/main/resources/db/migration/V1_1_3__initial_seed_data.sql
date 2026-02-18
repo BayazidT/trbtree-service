@@ -30,8 +30,8 @@ WHERE r.code = 'ADMIN'
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM users WHERE username = 'admin') THEN
-        INSERT INTO users (username, display_name, email, password_hash, status, email_verified)
-        VALUES ('admin', 'System Admin', 'admin@example.com', '$2b$12$...hashed...', 'ACTIVE', true);
+        INSERT INTO users (username, display_name, email, password, status, email_verified, is_active)
+        VALUES ('admin', 'System Admin', 'admin@example.com', '$2b$12$...hashed...', 'ACTIVE', true, true);
 END IF;
 END $$;
 
