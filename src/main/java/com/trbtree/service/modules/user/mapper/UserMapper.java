@@ -42,7 +42,7 @@ public class UserMapper {
                 .displayName(user.getDisplayName())
                 .email(user.getEmail())
                 .bio(user.getBio())
-                .avatarUrl(user.getAvatarUrl())
+                .avatarUrl(user.getProfile_picture_url())
                 .location(user.getLocation())
                 .website(user.getWebsite())
                 .active(user.isActive())

@@ -6,7 +6,7 @@ CREATE TABLE users (
     -- Core identity & authentication
                        username            VARCHAR(30)     NOT NULL UNIQUE,
                        email               VARCHAR(255)    NOT NULL UNIQUE,
-                       password_hash       TEXT            NOT NULL,               -- bcrypt / argon2id / scrypt
+                       password       TEXT            NOT NULL,               -- bcrypt / argon2id / scrypt
 
     -- Profile / display info
                        display_name        VARCHAR(100),                           -- flexible (nickname, full name, etc.)

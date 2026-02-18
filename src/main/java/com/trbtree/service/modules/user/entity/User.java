@@ -20,8 +20,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users", schema = "trbtree")
-@SoftDelete(columnName = "is_deleted")  // Hibernate 6+ recommended way
-@Where(clause = "is_deleted = false")
+@Where(clause = "is_active = true")
 @Getter
 @Setter
 @Builder
@@ -50,22 +49,16 @@ public class User implements UserDetails {
     @Column(length = 500)
     private String bio;
 
-    private String avatarUrl;
+    private String profile_picture_url;
 
     private String location;
 
+    @Column(name = "website_url")
     private String website;
 
     @Column(name = "is_active", nullable = false)
     @Builder.Default
     private boolean active = true;
-//
-//    @Column(name = "is_deleted", nullable = false)
-//    @Builder.Default
-//    private boolean deleted = false;
-//
-//    @Column(name = "deleted_at")
-//    private LocalDateTime deletedAt;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
