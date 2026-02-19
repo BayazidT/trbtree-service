@@ -88,11 +88,11 @@ public class User implements UserDetails {
         );
 
         // 2. Add individual permissions (uncommented & fixed)
-        roles.stream()
-                .flatMap(role -> role.getRolePermissions().stream())
-                .map(rp -> rp.getPermission())
-                .map(perm -> new SimpleGrantedAuthority(perm.getName()))   // e.g. "post:delete:any"
-                .forEach(authorities::add);
+//        roles.stream()
+//                .flatMap(role -> role.getRolePermissions().stream())
+//                .map(rp -> rp.getPermission())
+//                .map(perm -> new SimpleGrantedAuthority(perm.getName()))   // e.g. "post:delete:any"
+//                .forEach(authorities::add);
 
         return authorities;
     }
