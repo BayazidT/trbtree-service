@@ -7,32 +7,33 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 @Entity
 @Table(name = "user_roles", schema = "infotree")
-@IdClass(UserRoleId.class)
-@Getter @Setter @Builder
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserRole {
 
-    @Id
-    @Column(name = "user_id")
-    private UUID userId;
-
-    @Id
-    @Column(name = "role_id")
-    private UUID roleId;
+    @EmbeddedId
+    private UserRoleId id = new UserRoleId();
 
     @ManyToOne
     @MapsId("userId")
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
     @MapsId("roleId")
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
     @Column(name = "assigned_at")
     private LocalDateTime assignedAt = LocalDateTime.now();
+
+    // Optional constructor
+    public UserRole(User user, Role role) {
+        this.user = user;
+        this.role = role;
+        this.id = new UserRoleId(user.getId(), role.getId());
+    }
 }

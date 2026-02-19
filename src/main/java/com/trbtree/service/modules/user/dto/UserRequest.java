@@ -21,6 +21,10 @@ public record UserRequest(
         @NotBlank(message = "Email is required")
         @Email(message = "Invalid email format")
         String email,
+        String bio,
+        String profileUrl,
+        String location,
+        String websiteUrl,
 
         @NotBlank(message = "Password is required")
         @Size(min = 8, message = "Password must be at least 8 characters")

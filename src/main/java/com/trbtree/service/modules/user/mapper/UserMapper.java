@@ -25,6 +25,10 @@ public class UserMapper {
                 .displayName(request.displayName())
                 .username(request.username())
                 .email(request.email())
+                .bio(request.bio())
+                .profile_picture_url(request.profileUrl())
+                .location(request.location())
+                .website(request.websiteUrl())
                 .password(passwordEncoder.encode(request.password()))  // Always encode – no fallback!
                 .active(true)
                 // Optional: if you want to assign a default role during creation
@@ -42,9 +46,9 @@ public class UserMapper {
                 .displayName(user.getDisplayName())
                 .email(user.getEmail())
                 .bio(user.getBio())
-                .avatarUrl(user.getProfile_picture_url())
+                .profileUrl(user.getProfile_picture_url())
                 .location(user.getLocation())
-                .website(user.getWebsite())
+                .websiteUrl(user.getWebsite())
                 .active(user.isActive())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())

@@ -29,7 +29,7 @@ public class UserService {
     @Transactional
     public UserResponse create(UserRequest request) {
         User saved = userRepository.save(mapper.toEntity(request));
-        userRoleService.setUserRole(saved.getId(), request.roleId());
+//        userRoleService.setUserRole(saved.getId(), request.roleId());
         return mapper.toResponse(saved);
     }
 

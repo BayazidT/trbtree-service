@@ -33,7 +33,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**"
                         ).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/info-tree-service/api/v1/**", "/error").permitAll()
+                        .requestMatchers("/info-tree-service/api/v1/**", "/error").permitAll()
                         .requestMatchers("/info-tree-service/api/v1/public/auth/login", "/error").permitAll()
                         .requestMatchers("/info-tree-service/api/auth/refresh").permitAll()
                         .anyRequest().authenticated()
