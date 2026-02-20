@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static org.hibernate.query.sqm.tree.SqmNode.log;
+
 @Service
 @RequiredArgsConstructor
 public class UserRoleService {
@@ -24,15 +26,27 @@ public class UserRoleService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Role role = roleRepository.findById(roleId)
-                .orElseThrow(() -> new RuntimeException("Role not found"));
+        Role role = roleRepository.findRoleById(roleId);  // ← assuming this can return null!
+
+        // ← Add null check here – very common cause of NPE later
+        if (role == null) {
+            throw new RuntimeException("Role not found with id: " + roleId);
+        }
 
         UserRole userRole = new UserRole();
         userRole.setUser(user);
         userRole.setRole(role);
         userRole.setAssignedAt(LocalDateTime.now());
 
-        userRoleRepository.save(userRole);
+        try {
+            userRoleRepository.save(userRole);
+            // Optional: log success
+            // log.info("Assigned role {} to user {}", roleId, userId);
+        } catch (Exception e) {
+            // This will show up in logs even if higher layers swallow it
+            log.error("Failed to save UserRole (user={}, role={})");
+            throw e;  // rethrow so controller advice / default handling still sees it
+        }
     }
 
 }

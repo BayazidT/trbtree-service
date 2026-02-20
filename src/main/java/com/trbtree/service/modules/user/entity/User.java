@@ -1,6 +1,7 @@
 package com.trbtree.service.modules.user.entity;
 
 import com.trbtree.service.rbac.entity.Role;
+import com.trbtree.service.rbac.entity.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -77,6 +78,9 @@ public class User implements UserDetails {
     )
     @Builder.Default
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserRole> userRoles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
