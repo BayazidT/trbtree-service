@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 @RestController
-@RequestMapping("/info-tree-service/api/v1/public/auth")
+@RequestMapping("/trbtree-service/api/v1/public/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationService authenticationService;

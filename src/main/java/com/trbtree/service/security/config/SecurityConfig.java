@@ -33,9 +33,9 @@ public class SecurityConfig {
                                 "/v3/api-docs/**"
                         ).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/info-tree-service/api/v1/**", "/error").permitAll()
-                        .requestMatchers("/info-tree-service/api/v1/public/auth/login", "/error").permitAll()
-                        .requestMatchers("/info-tree-service/api/auth/refresh").permitAll()
+                        .requestMatchers("/trbtree-service/api/v1/**", "/error").permitAll()
+                        .requestMatchers("/trbtree-service/api/v1/public/auth/login", "/error").permitAll()
+                        .requestMatchers("/trbtree-service/api/auth/refresh").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception ->
@@ -43,31 +43,8 @@ public class SecurityConfig {
                                 new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)
                         )
                 )
-                // REMOVE this line
-                // .anonymous(anonymous -> anonymous.disable())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//
-//        // Allow your React app's URL
-//        config.setAllowedOrigins(List.of("http://localhost:5173"));
-//        config.setAllowedOrigins(List.of("http://localhost:5173/login"));
-//        config.setAllowedOrigins(List.of("http://localhost:3000"));
-//        config.setAllowedOrigins(List.of("https://trbtree.com"));
-//
-//        // Allow headers and methods
-//        config.setAllowedHeaders(List.of("*"));
-//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//        return source;
-//    }
-
 }
