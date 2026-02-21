@@ -5,9 +5,8 @@ import com.trbtree.service.modules.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.UUID;// UserRole.java
+import java.util.UUID;
 @Entity
 @Table(name = "user_roles", schema = "trbtree")
 @IdClass(UserRoleId.class)
