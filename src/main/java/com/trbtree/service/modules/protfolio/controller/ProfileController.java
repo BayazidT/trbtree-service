@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/profiles")
+@RequestMapping("/trbtree-service/api/v1/private/profiles")
 @RequiredArgsConstructor
 public class ProfileController {
 
     private final ProfileService profileService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<Object> getProfile(@PathVariable UUID userId) {
+    public ResponseEntity<ProfileResponse> getProfile(@PathVariable UUID userId) {
         return ResponseEntity.ok(profileService.getProfile(userId));
     }
 
