@@ -19,7 +19,7 @@ public class ProfileController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<ProfileResponse> getProfile(@PathVariable UUID userId) {
-        return ResponseEntity.ok(profileService.getProfile(userId));
+        return ResponseEntity.ok(profileService.getOrCreateProfile(userId));
     }
 
     @PutMapping("/{userId}")
