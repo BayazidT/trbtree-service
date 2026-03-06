@@ -10,12 +10,8 @@ import java.util.UUID;
 public record UserResponse(
         UUID id,
         String username,
-        String displayName,
+        String name,
         String email,
-        String bio,
-        String profileUrl,
-        String location,
-        String websiteUrl,
         boolean active,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,

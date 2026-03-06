@@ -2,20 +2,11 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 CREATE TABLE users (
                        id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-
-    -- Core identity & authentication
                        username            VARCHAR(30)     NOT NULL UNIQUE,
+                       name        VARCHAR(100) NOT NULL,
+                       phone        VARCHAR(100),
                        email               VARCHAR(255)    NOT NULL UNIQUE,
                        password       TEXT            NOT NULL,               -- bcrypt / argon2id / scrypt
-
-    -- Profile / display info
-                       display_name        VARCHAR(100),                           -- flexible (nickname, full name, etc.)
-                       bio                 TEXT,
-                       profile_picture_url TEXT,
-                       cover_photo_url     TEXT,
-                       website_url         TEXT,
-                       location            VARCHAR(255),
-
     -- Account state
                        status              VARCHAR(20)     NOT NULL DEFAULT 'ACTIVE'
                            CHECK (status IN ('ACTIVE', 'INACTIVE', 'SUSPENDED', 'BANNED', 'DELETED')),

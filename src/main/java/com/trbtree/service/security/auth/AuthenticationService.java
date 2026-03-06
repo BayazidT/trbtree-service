@@ -93,7 +93,7 @@ public class AuthenticationService {
                 dbUser.getId(),
                 dbUser.getUsername(),
                 dbUser.getEmail(),
-                dbUser.getDisplayName(),
+                dbUser.getName(),
                 roleNames,
                 permissionNames
         );

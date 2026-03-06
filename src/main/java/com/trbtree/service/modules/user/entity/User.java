@@ -45,17 +45,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column(length = 100)
-    private String displayName;       // renamed from 'name' for clarity
-
-    @Column(length = 500)
-    private String bio;
-
-    private String profile_picture_url;
-
-    private String location;
-
-    @Column(name = "website_url")
-    private String website;
+    private String name;
 
     @Column(name = "is_active", nullable = false)
     @Builder.Default
