@@ -12,7 +12,7 @@ public record UserRequest(
 
         @NotBlank(message = "Display name is required")
         @Size(min = 2, max = 100, message = "Display name must be between 2 and 100 characters")
-        String displayName,
+        String name,
 
         @NotBlank(message = "Username is required")
         @Size(min = 3, max = 40, message = "Username must be between 3 and 40 characters")
@@ -21,11 +21,6 @@ public record UserRequest(
         @NotBlank(message = "Email is required")
         @Email(message = "Invalid email format")
         String email,
-        String bio,
-        String profileUrl,
-        String location,
-        String websiteUrl,
-
         @NotBlank(message = "Password is required")
         @Size(min = 8, message = "Password must be at least 8 characters")
         String password,

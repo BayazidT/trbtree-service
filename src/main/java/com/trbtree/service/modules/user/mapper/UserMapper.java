@@ -22,17 +22,11 @@ public class UserMapper {
      */
     public User toEntity(UserRequest request) {
         return User.builder()
-                .displayName(request.displayName())
+                .name(request.name())
                 .username(request.username())
                 .email(request.email())
-                .bio(request.bio())
-                .profile_picture_url(request.profileUrl())
-                .location(request.location())
-                .website(request.websiteUrl())
                 .password(passwordEncoder.encode(request.password()))  // Always encode – no fallback!
                 .active(true)
-                // Optional: if you want to assign a default role during creation
-                // .roles(Set.of(defaultUserRole))  // you can inject or fetch Role service
                 .build();
     }
 
@@ -43,20 +37,13 @@ public class UserMapper {
         return UserResponse.builder()
                 .id(user.getId())
                 .username(user.getUsername())
-                .displayName(user.getDisplayName())
                 .email(user.getEmail())
-                .bio(user.getBio())
-                .profileUrl(user.getProfile_picture_url())
-                .location(user.getLocation())
-                .websiteUrl(user.getWebsite())
                 .active(user.isActive())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
-                // Optional: include role names (and permissions if needed)
                 .roles(user.getRoles().stream()
-                        .map(Role::getName)           // or getCode() if you prefer
+                        .map(Role::getName)
                         .collect(Collectors.toSet()))
-                // .permissions(...) if you want flattened permission codes
                 .build();
     }
 
@@ -66,8 +53,8 @@ public class UserMapper {
      */
     public void updateEntity(User user, UserRequest request) {
         // For full update (PUT) – or use UserUpdateRequest for partial (PATCH)
-        if (request.displayName() != null) {
-            user.setDisplayName(request.displayName());
+        if (request.name() != null) {
+            user.setName(request.name());
         }
         if (request.username() != null) {
             user.setUsername(request.username());

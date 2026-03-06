@@ -7,7 +7,7 @@ CREATE TABLE auth_providers (
                                 provider    VARCHAR(50) NOT NULL,          -- 'google', 'github', 'apple', 'discord', ...
                                 provider_id VARCHAR(255) NOT NULL,         -- sub / id from provider
                                 email       VARCHAR(255),
-                                display_name VARCHAR(100),
+                                name VARCHAR(100),
                                 avatar_url  TEXT,
                                 access_token TEXT,
                                 refresh_token TEXT,

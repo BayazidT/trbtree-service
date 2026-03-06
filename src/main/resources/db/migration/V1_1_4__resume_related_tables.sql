@@ -15,7 +15,7 @@ CREATE TABLE user_profiles (
                                introduction        TEXT,                            -- long self-introduction / summary / objective
                                open_to_work        BOOLEAN DEFAULT FALSE,
 
-    -- Optional contact fields (you can keep these here or move to separate table)
+    -- Optional contact fields (Which may be different from the email used to create account.)
                                email               VARCHAR(255),
                                phone               VARCHAR(50),
                                linkedin_url        VARCHAR(512),
