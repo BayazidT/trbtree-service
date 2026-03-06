@@ -30,7 +30,6 @@ public class ProfileService {
                     User user = userRepository.getReferenceById(userId); // or findById().orElseThrow()
                     UserProfile newProfile = new UserProfile();
                     newProfile.setUser(user);
-                    // Optional: set defaults
                     newProfile.setHeadline("New User");
                     newProfile.setOpenToWork(false);
                     UserProfile userProfile = repository.save(newProfile);
