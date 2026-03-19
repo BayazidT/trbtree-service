@@ -19,6 +19,8 @@ public class ProfileService {
     private final ProfileRepository repository;
     private final UserRepository userRepository;
     private final UserProfileMapper userProfileMapper;
+    private final ProfileRepository profileRepository;
+
     public ProfileResponse getProfile(UUID userId) {
         UserProfile userProfile = repository.findByUserId(userId).orElseThrow(() -> new DataNotFoundException("User not found"));
         return userProfileMapper.toResponse(userProfile);
@@ -37,6 +39,9 @@ public class ProfileService {
                 }));
     }
     public ProfileResponse updateProfile(UUID userId, ProfileRequest request) {
-        return null;
+        UserProfile userProfile = profileRepository.findById(userId).orElseThrow(() -> new DataNotFoundException("User not found"));
+        UserProfile updatedUserProfile = userProfileMapper.updateProfile(userProfile, request);
+        UserProfile savedProfile = repository.save(updatedUserProfile);
+        return userProfileMapper.toResponse(savedProfile);
     }
 }

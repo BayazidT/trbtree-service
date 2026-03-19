@@ -1,6 +1,7 @@
 package com.trbtree.service.modules.protfolio.dto;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.util.UUID;
 
 @Builder
 @Setter
+@Getter
 public class ProfileRequest {
     private UUID userId;
     private String username;              // from User
