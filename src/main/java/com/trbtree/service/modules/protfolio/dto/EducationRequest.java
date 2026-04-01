@@ -12,14 +12,13 @@ import java.util.UUID;
 @Setter
 @Getter
 public class EducationRequest {
-    private UUID userId;
     private String degree;              // from User
     private String institution;           // from User
     private String fieldOfStudy;                 // from UserProfile
     private String description;                 // from UserProfile
     private boolean isCurrent;
-    private LocalDate startTime;
-    private LocalDate endTime;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private short startYear;
     private short endYear;
     private short displayOrder;

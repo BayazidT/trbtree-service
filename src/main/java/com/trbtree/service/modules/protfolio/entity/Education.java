@@ -19,8 +19,8 @@ import java.util.UUID;
 public class Education {
 
     @Id
-    @Column(name = "user_id")
-    private UUID userId;
+    @GeneratedValue
+    private UUID id;
 
     @OneToOne
     @MapsId

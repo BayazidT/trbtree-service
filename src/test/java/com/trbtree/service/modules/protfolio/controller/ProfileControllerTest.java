@@ -55,7 +55,7 @@ class ProfileControllerTest {
         profileDto = ProfileResponse.builder()
                 .userId(profileId)
                 .username("bayazid")
-                .displayName("Bayazid Talukder")
+                .name("Bayazid Talukder")
                 .email("bayazidtr@gmail.com")
                 .phone("+491234567890")
                 .headline("Software Engineer")
