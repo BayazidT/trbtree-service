@@ -11,11 +11,8 @@ import java.util.UUID;
 @Setter
 @Builder
 public class ProfileResponse {
-    private UUID userId;
-    private String username;              // from User
-    private String displayName;           // from User
-    private String email;                 // from UserProfile
-    private String phone;                 // from UserProfile
+    private String displayEmail;                 // from UserProfile
+    private String displayPhone;                 // from UserProfile
     private String headline;              // from UserProfile
     private String currentDesignation;    // from UserProfile
     private String profilePictureUrl;     // from UserProfile

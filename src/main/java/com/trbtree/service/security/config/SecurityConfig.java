@@ -34,6 +34,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/trbtree-service/api/v1/**", "/error").permitAll()
+                        .requestMatchers("/trbtree-service/api/v1/private/education/**", "/error").permitAll()
                         .requestMatchers("/trbtree-service/api/v1/public/auth/login", "/error").permitAll()
                         .requestMatchers("/trbtree-service/api/auth/refresh").permitAll()
                         .anyRequest().authenticated()
