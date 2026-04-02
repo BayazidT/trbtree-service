@@ -32,7 +32,7 @@ public class EducationMapper {
         return education;
     }
 
-    public static EducationResponse toResponse(Education entity) {
+    public  EducationResponse toResponse(Education entity) {
         if (entity == null) {
             return null;
         }
