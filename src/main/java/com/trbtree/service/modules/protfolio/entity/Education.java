@@ -22,9 +22,8 @@ public class Education {
     @GeneratedValue
     private UUID id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     private String degree;

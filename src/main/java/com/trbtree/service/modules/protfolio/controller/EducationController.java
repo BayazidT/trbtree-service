@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,5 +23,11 @@ public class EducationController {
     public ResponseEntity<EducationResponse> createEducation(@Valid @RequestBody EducationRequest educationRequest, @PathVariable UUID userId) {
         EducationResponse response = educationService.createEducation(educationRequest, userId);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<EducationResponse>> getEducation(@PathVariable UUID userId) {
+        List<EducationResponse> responseList = educationService.getEducationByUserId(userId);
+        return ResponseEntity.ok(responseList);
     }
 }
