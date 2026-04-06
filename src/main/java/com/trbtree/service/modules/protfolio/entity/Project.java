@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "profile_projects")
+@Table(name = "profile_projects", schema = "trbtree")
 @Getter
 @Setter
 public class Project {

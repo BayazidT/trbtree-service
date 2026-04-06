@@ -8,7 +8,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "profile_languages",
+@Table(name = "profile_languages", schema = "trbtree",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "language_name"}))
 @Getter
 @Setter
