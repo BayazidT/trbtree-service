@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "profile_certifications")
+@Table(name = "profile_certifications" , schema = "trbtree")
 @Getter
 @Setter
 public class Certification {
