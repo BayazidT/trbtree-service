@@ -1,5 +1,6 @@
 package com.trbtree.service.modules.protfolio.service;
 
+import com.trbtree.service.modules.protfolio.dto.SkillRequest;
 import com.trbtree.service.modules.protfolio.dto.SkillResponse;
 import org.springframework.stereotype.Component;
 
@@ -10,4 +11,6 @@ import java.util.UUID;
 public interface SkillService {
 
     List<SkillResponse> getSkill(UUID userId);
+
+    SkillResponse createSkill(SkillRequest request, UUID userId);
 }

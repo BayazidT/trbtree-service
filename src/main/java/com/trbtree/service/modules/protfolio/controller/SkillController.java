@@ -1,15 +1,13 @@
 package com.trbtree.service.modules.protfolio.controller;
 
 
+import com.trbtree.service.modules.protfolio.dto.SkillRequest;
 import com.trbtree.service.modules.protfolio.dto.SkillResponse;
 import com.trbtree.service.modules.protfolio.entity.Skill;
 import com.trbtree.service.modules.protfolio.service.SkillService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +23,12 @@ public class SkillController {
     public ResponseEntity<List<SkillResponse>>getSkill(@PathVariable UUID userId) {
         List<SkillResponse> responseList = skillService.getSkill(userId);
         return ResponseEntity.ok(responseList);
+    }
+
+    @PostMapping("/{userId}")
+    public ResponseEntity<SkillResponse>createSkill(@PathVariable UUID userId, @RequestBody SkillRequest request) {
+        SkillResponse response = skillService.createSkill(request, userId);
+        return ResponseEntity.ok(response);
     }
 
 }
