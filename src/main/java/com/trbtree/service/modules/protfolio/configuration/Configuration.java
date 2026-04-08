@@ -1,12 +1,16 @@
 package com.trbtree.service.modules.protfolio.configuration;
 
 import com.trbtree.service.modules.protfolio.mapper.EducationMapper;
+import com.trbtree.service.modules.protfolio.mapper.ProjectMapper;
 import com.trbtree.service.modules.protfolio.mapper.SkillMapper;
 import com.trbtree.service.modules.protfolio.repository.EducationRepository;
+import com.trbtree.service.modules.protfolio.repository.ProjectRepository;
 import com.trbtree.service.modules.protfolio.repository.SkillRepository;
 import com.trbtree.service.modules.protfolio.service.EducationService;
+import com.trbtree.service.modules.protfolio.service.ProjectService;
 import com.trbtree.service.modules.protfolio.service.SkillService;
 import com.trbtree.service.modules.protfolio.service.impl.EducationServiceImpl;
+import com.trbtree.service.modules.protfolio.service.impl.ProjectServiceImpl;
 import com.trbtree.service.modules.protfolio.service.impl.SkillServiceImpl;
 import com.trbtree.service.modules.user.repository.UserRepository;
 import com.trbtree.service.modules.user.service.UserService;
@@ -21,6 +25,8 @@ public class Configuration {
     private final EducationMapper educationMapper;
     private final SkillRepository skillRepository;
     private final SkillMapper skillMapper;
+    private final ProjectRepository projectRepository;
+    private final ProjectMapper projectMapper;
 
     @Bean
     public EducationService getEducationServiceImpl(){
@@ -30,5 +36,10 @@ public class Configuration {
     @Bean
     public SkillService getSkillServiceImpl(){
         return new SkillServiceImpl(skillRepository, skillMapper);
+    }
+
+    @Bean
+    public ProjectService getProjectServiceImpl(){
+        return new ProjectServiceImpl(projectRepository, projectMapper);
     }
 }
