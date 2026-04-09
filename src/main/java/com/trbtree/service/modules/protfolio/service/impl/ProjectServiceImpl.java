@@ -1,5 +1,6 @@
 package com.trbtree.service.modules.protfolio.service.impl;
 
+import com.trbtree.service.modules.protfolio.dto.ProjectRequest;
 import com.trbtree.service.modules.protfolio.dto.ProjectResponse;
 import com.trbtree.service.modules.protfolio.entity.Project;
 import com.trbtree.service.modules.protfolio.mapper.ProjectMapper;
@@ -19,10 +20,18 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectResponse> getProject(UUID userId) {
-        return Optional.ofNullable(projectRepository.findByUserId())
+        return Optional.ofNullable(projectRepository.findByUserId(userId))
                 .orElse(Collections.emptyList())
                 .stream()
                 .map(projectMapper::toDTO)
                 .toList();
+    }
+
+    @Override
+    public ProjectResponse createProject(ProjectRequest request, UUID userId) {
+        Project project = projectMapper.toEntity(request);
+        project.setUserId(userId);
+        projectRepository.save(project);
+        return projectMapper.toDTO(project);
     }
 }
