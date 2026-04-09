@@ -1,14 +1,12 @@
 package com.trbtree.service.modules.protfolio.controller;
 
+import com.trbtree.service.modules.protfolio.dto.ProjectRequest;
 import com.trbtree.service.modules.protfolio.dto.ProjectResponse;
 import com.trbtree.service.modules.protfolio.dto.SkillResponse;
 import com.trbtree.service.modules.protfolio.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,5 +23,11 @@ public class ProjectController {
     public ResponseEntity<List<ProjectResponse>> getProject(@PathVariable UUID userId) {
         List<ProjectResponse> responseList = projectService.getProject(userId);
         return ResponseEntity.ok(responseList);
+    }
+
+    @PostMapping("/{userId}")
+    public ResponseEntity<ProjectResponse> createProject(@PathVariable UUID userId, @RequestBody ProjectRequest request) {
+        ProjectResponse response = projectService.createProject(request, userId);
+        return ResponseEntity.ok(response);
     }
 }
