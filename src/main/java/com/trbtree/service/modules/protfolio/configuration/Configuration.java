@@ -1,15 +1,19 @@
 package com.trbtree.service.modules.protfolio.configuration;
 
 import com.trbtree.service.modules.protfolio.mapper.EducationMapper;
+import com.trbtree.service.modules.protfolio.mapper.ExperienceMapper;
 import com.trbtree.service.modules.protfolio.mapper.ProjectMapper;
 import com.trbtree.service.modules.protfolio.mapper.SkillMapper;
 import com.trbtree.service.modules.protfolio.repository.EducationRepository;
+import com.trbtree.service.modules.protfolio.repository.ExperienceRepository;
 import com.trbtree.service.modules.protfolio.repository.ProjectRepository;
 import com.trbtree.service.modules.protfolio.repository.SkillRepository;
 import com.trbtree.service.modules.protfolio.service.EducationService;
+import com.trbtree.service.modules.protfolio.service.ExperienceService;
 import com.trbtree.service.modules.protfolio.service.ProjectService;
 import com.trbtree.service.modules.protfolio.service.SkillService;
 import com.trbtree.service.modules.protfolio.service.impl.EducationServiceImpl;
+import com.trbtree.service.modules.protfolio.service.impl.ExperienceServiceImpl;
 import com.trbtree.service.modules.protfolio.service.impl.ProjectServiceImpl;
 import com.trbtree.service.modules.protfolio.service.impl.SkillServiceImpl;
 import com.trbtree.service.modules.user.repository.UserRepository;
@@ -27,6 +31,8 @@ public class Configuration {
     private final SkillMapper skillMapper;
     private final ProjectRepository projectRepository;
     private final ProjectMapper projectMapper;
+    private final ExperienceRepository experienceRepository;
+    private final ExperienceMapper experienceMapper;
 
     @Bean
     public EducationService getEducationServiceImpl(){
@@ -41,5 +47,10 @@ public class Configuration {
     @Bean
     public ProjectService getProjectServiceImpl(){
         return new ProjectServiceImpl(projectRepository, projectMapper);
+    }
+
+    @Bean
+    public ExperienceService getExperienceService(){
+        return new ExperienceServiceImpl(experienceRepository, experienceMapper);
     }
 }
