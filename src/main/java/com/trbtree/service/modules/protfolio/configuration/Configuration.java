@@ -1,21 +1,9 @@
 package com.trbtree.service.modules.protfolio.configuration;
 
-import com.trbtree.service.modules.protfolio.mapper.EducationMapper;
-import com.trbtree.service.modules.protfolio.mapper.ExperienceMapper;
-import com.trbtree.service.modules.protfolio.mapper.ProjectMapper;
-import com.trbtree.service.modules.protfolio.mapper.SkillMapper;
-import com.trbtree.service.modules.protfolio.repository.EducationRepository;
-import com.trbtree.service.modules.protfolio.repository.ExperienceRepository;
-import com.trbtree.service.modules.protfolio.repository.ProjectRepository;
-import com.trbtree.service.modules.protfolio.repository.SkillRepository;
-import com.trbtree.service.modules.protfolio.service.EducationService;
-import com.trbtree.service.modules.protfolio.service.ExperienceService;
-import com.trbtree.service.modules.protfolio.service.ProjectService;
-import com.trbtree.service.modules.protfolio.service.SkillService;
-import com.trbtree.service.modules.protfolio.service.impl.EducationServiceImpl;
-import com.trbtree.service.modules.protfolio.service.impl.ExperienceServiceImpl;
-import com.trbtree.service.modules.protfolio.service.impl.ProjectServiceImpl;
-import com.trbtree.service.modules.protfolio.service.impl.SkillServiceImpl;
+import com.trbtree.service.modules.protfolio.mapper.*;
+import com.trbtree.service.modules.protfolio.repository.*;
+import com.trbtree.service.modules.protfolio.service.*;
+import com.trbtree.service.modules.protfolio.service.impl.*;
 import com.trbtree.service.modules.user.repository.UserRepository;
 import com.trbtree.service.modules.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +21,12 @@ public class Configuration {
     private final ProjectMapper projectMapper;
     private final ExperienceRepository experienceRepository;
     private final ExperienceMapper experienceMapper;
+    private final CertificationRepository certificationRepository;
+    private final CertificationMapper certificationMapper;
+    private final HobbyRepository hobbyRepository;
+    private final HobbyMapper hobbyMapper;
+    private final LanguageRepository languageRepository;
+    private final LanguageMapper languageMapper;
 
     @Bean
     public EducationService getEducationServiceImpl(){
@@ -53,4 +47,20 @@ public class Configuration {
     public ExperienceService getExperienceService(){
         return new ExperienceServiceImpl(experienceRepository, experienceMapper);
     }
+
+    @Bean
+    public CertificationService getCertificationServiceImpl(){
+        return new CertificationServiceImpl(certificationRepository, certificationMapper);
+    }
+
+    @Bean
+    public HobbyService getHobbyServiceImpl(){
+        return new HobbyServiceImpl(hobbyRepository, hobbyMapper);
+    }
+
+    @Bean
+    public LanguageService getLanguageServiceImpl(){
+        return new LanguageServiceImpl(languageRepository, languageMapper);
+    }
 }
+
