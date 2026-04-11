@@ -28,6 +28,15 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public ProjectResponse updateProject(ProjectRequest request, UUID id) {
+        Project oldProject = projectRepository.findById(id).orElse(null);
+        Project project = projectMapper.toEntity(request);
+        project.setUserId(oldProject.getUserId());
+        projectRepository.delete(oldProject);
+        projectRepository.save(project);
+        return projectMapper.toDTO(project);    }
+
+    @Override
     public ProjectResponse createProject(ProjectRequest request, UUID userId) {
         Project project = projectMapper.toEntity(request);
         project.setUserId(userId);

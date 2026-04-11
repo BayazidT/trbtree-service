@@ -13,4 +13,6 @@ public interface ProjectService {
     List<ProjectResponse> getProject(UUID userId);
 
     ProjectResponse createProject(ProjectRequest request, UUID userId);
+
+    ProjectResponse updateProject(ProjectRequest request, UUID id);
 }

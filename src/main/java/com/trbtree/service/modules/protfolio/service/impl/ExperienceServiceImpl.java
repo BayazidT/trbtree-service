@@ -27,6 +27,14 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     @Override
+    public ExperienceResponse updateExperience(ExperienceRequest experienceRequest, UUID id) {
+        Experience oldExperience = repository.findById(id).orElseThrow(null);
+        Experience experience = experienceMapper.toEntity(experienceRequest);
+        experience.setUserId(oldExperience.getUserId());
+        repository.delete(oldExperience);
+        return experienceMapper.toDTO(repository.save(experience));    }
+
+    @Override
     public List<ExperienceResponse> getExperience(UUID userId) {
         return Optional.ofNullable(repository.findByUserId(userId))
                 .orElse(Collections.emptyList())

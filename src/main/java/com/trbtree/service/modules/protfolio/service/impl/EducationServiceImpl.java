@@ -29,6 +29,14 @@ public class EducationServiceImpl implements EducationService {
     }
 
     @Override
+    public EducationResponse updateEducation(EducationRequest educationRequest, UUID id) {
+        Education oldEntry = educationRepository.findById(id).orElse(null);
+        Education newEntry = educationMapper.toEntity(educationRequest, oldEntry.getUser());
+        educationRepository.delete(oldEntry);
+        return educationMapper.toResponse(educationRepository.save(newEntry));
+    }
+
+    @Override
     public EducationResponse createEducation(EducationRequest educationRequest, UUID userId) {
         User user =  userRepository.findById(userId).orElseThrow();
         return educationMapper.toResponse(educationRepository.save(educationMapper.toEntity(educationRequest, user)));

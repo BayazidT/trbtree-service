@@ -12,4 +12,6 @@ public interface LanguageService {
     List<LanguageResponse> getLanguages(UUID userId);
 
     LanguageResponse addLanguage(LanguageRequest languageRequest, UUID userId);
+
+    LanguageResponse updateLanguage(LanguageRequest languageRequest, UUID id);
 }

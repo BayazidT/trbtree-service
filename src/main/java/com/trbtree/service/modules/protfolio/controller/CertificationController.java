@@ -29,5 +29,13 @@ public class CertificationController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CertificationResponse> updateCertification(@PathVariable UUID id, @RequestBody CertificationRequest request) {
+        CertificationResponse response = certificationService.updateCertification(request, id);
+        return ResponseEntity.ok(response);
+    }
+
+
+
 
 }

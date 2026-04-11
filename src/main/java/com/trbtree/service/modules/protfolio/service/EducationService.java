@@ -12,4 +12,6 @@ public interface EducationService {
     EducationResponse createEducation(EducationRequest educationRequest, UUID userId);
 
     List<EducationResponse> getEducationByUserId(UUID userId);
+
+    EducationResponse updateEducation(EducationRequest educationRequest, UUID id);
 }

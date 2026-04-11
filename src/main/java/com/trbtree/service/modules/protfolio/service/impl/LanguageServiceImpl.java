@@ -19,6 +19,15 @@ public class LanguageServiceImpl implements LanguageService {
     private final LanguageMapper languageMapper;
 
     @Override
+    public LanguageResponse updateLanguage(LanguageRequest languageRequest, UUID id) {
+        Language oldLanguage = languageRepository.findById(id).orElse(null);
+        Language language = languageMapper.toEntity(languageRequest);
+        language.setUserId(oldLanguage.getUserId());
+        languageRepository.delete(oldLanguage);
+        Language response= languageRepository.save(language);
+        return languageMapper.toDTO(response);    }
+
+    @Override
     public LanguageResponse addLanguage(LanguageRequest languageRequest, UUID userId) {
         Language language = languageMapper.toEntity(languageRequest);
         language.setUserId(userId);

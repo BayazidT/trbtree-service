@@ -19,6 +19,17 @@ public class CertificationServiceImpl implements CertificationService {
     private final CertificationMapper certificationMapper;
 
     @Override
+    public CertificationResponse updateCertification(CertificationRequest request, UUID id) {
+        Certification oldCertification= certificationRepository.findById(id).orElse(null);
+        if(oldCertification==null) {
+            return null;
+        }
+        Certification certification = certificationMapper.toEntity(request);
+        certification.setUserId(oldCertification.getUserId());
+        certificationRepository.delete(oldCertification);
+        return certificationMapper.toDTO(certificationRepository.save(certification));    }
+
+    @Override
     public List<CertificationResponse> getCertifications(UUID userId) {
         return Optional.ofNullable(certificationRepository.findByUserId(userId))
                 .orElse(Collections.emptyList())

@@ -38,6 +38,7 @@ public class EducationMapper {
         }
 
         return EducationResponse.builder()
+                .id(entity.getId())
                 .endYear(entity.getEndYear())
                 .startYear(entity.getStartYear())
                 .endDate(entity.getEndDate())

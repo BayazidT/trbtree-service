@@ -19,6 +19,15 @@ public class SkillServiceImpl implements SkillService {
     private final SkillMapper skillMapper;
 
     @Override
+    public SkillResponse updateSkill(SkillRequest request, UUID id) {
+        Skill oldSkill = skillRepository.findById(id).orElse(null);
+        Skill skill = skillMapper.toEntity(request);
+        skill.setUserId(oldSkill.getUserId());
+        skillRepository.delete(oldSkill);
+        return skillMapper.toDTO(skillRepository.save(skill));
+    }
+
+    @Override
     public SkillResponse createSkill(SkillRequest request, UUID userId) {
         Skill skill = skillMapper.toEntity(request);
         skill.setUserId(userId);

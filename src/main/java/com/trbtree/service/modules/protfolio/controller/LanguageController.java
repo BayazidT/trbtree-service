@@ -27,4 +27,10 @@ public class LanguageController {
         LanguageResponse response = languageService.addLanguage(languageRequest, userId);
         return ResponseEntity.ok(response);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<LanguageResponse> updateLanguage(@PathVariable UUID id, @RequestBody LanguageRequest languageRequest) {
+        LanguageResponse response = languageService.updateLanguage(languageRequest, id);
+        return ResponseEntity.ok(response);
+    }
+
 }

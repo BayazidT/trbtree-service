@@ -12,4 +12,6 @@ public interface HobbyService {
     List<HobbyResponse> getHobbies(UUID userId);
 
     HobbyResponse addHobby(HobbyRequest hobbyRequest, UUID userId);
+
+    HobbyResponse updateHobby(HobbyRequest hobbyRequest, UUID id);
 }

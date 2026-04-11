@@ -3,7 +3,6 @@ package com.trbtree.service.modules.protfolio.controller;
 
 import com.trbtree.service.modules.protfolio.dto.PublicationRequest;
 import com.trbtree.service.modules.protfolio.dto.PublicationResponse;
-import com.trbtree.service.modules.protfolio.entity.Publication;
 import com.trbtree.service.modules.protfolio.service.PublicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

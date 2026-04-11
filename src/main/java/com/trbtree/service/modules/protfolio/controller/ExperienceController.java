@@ -29,4 +29,10 @@ public class ExperienceController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ExperienceResponse> updateExperience(@PathVariable UUID id, @RequestBody ExperienceRequest experienceRequest){
+        ExperienceResponse response = experienceService.updateExperience(experienceRequest, id);
+        return ResponseEntity.ok(response);
+    }
+
 }
