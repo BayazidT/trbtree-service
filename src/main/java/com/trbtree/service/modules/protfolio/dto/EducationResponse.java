@@ -11,6 +11,7 @@ import java.util.UUID;
 @Setter
 @Getter
 public class EducationResponse {
+    private UUID id;
     private String degree;
     private String institution;
     private String fieldOfStudy;

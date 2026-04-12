@@ -30,5 +30,10 @@ public class SkillController {
         SkillResponse response = skillService.createSkill(request, userId);
         return ResponseEntity.ok(response);
     }
+    @PostMapping("/{id}")
+    public ResponseEntity<SkillResponse>updateSkill(@PathVariable UUID id, @RequestBody SkillRequest request) {
+        SkillResponse response = skillService.updateSkill(request, id);
+        return ResponseEntity.ok(response);
+    }
 
 }

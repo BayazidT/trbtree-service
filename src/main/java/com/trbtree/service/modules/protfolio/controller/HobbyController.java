@@ -28,4 +28,10 @@ public class HobbyController {
         HobbyResponse response = hobbyService.addHobby(hobbyRequest, userId);
         return ResponseEntity.ok(response);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<HobbyResponse> updateHobby(@PathVariable UUID id, @RequestBody HobbyRequest hobbyRequest) {
+        HobbyResponse response = hobbyService.updateHobby(hobbyRequest, id);
+        return ResponseEntity.ok(response);
+    }
 }

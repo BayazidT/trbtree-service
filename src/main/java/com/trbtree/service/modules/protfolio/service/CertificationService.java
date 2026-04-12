@@ -12,4 +12,6 @@ public interface CertificationService {
     List<CertificationResponse> getCertifications(UUID userId);
 
     CertificationResponse addCertification(CertificationRequest request, UUID userId);
+
+    CertificationResponse updateCertification(CertificationRequest request, UUID id);
 }

@@ -25,6 +25,12 @@ public class EducationController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EducationResponse> updateEducation(@Valid @RequestBody EducationRequest educationRequest, @PathVariable UUID id) {
+        EducationResponse response = educationService.updateEducation(educationRequest, id);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/{userId}")
     public ResponseEntity<List<EducationResponse>> getEducation(@PathVariable UUID userId) {
         List<EducationResponse> responseList = educationService.getEducationByUserId(userId);

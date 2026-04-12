@@ -13,4 +13,6 @@ public interface ExperienceService {
     List<ExperienceResponse> getExperience(java.util.UUID userId);
 
     ExperienceResponse createExperience(ExperienceRequest experienceRequest, UUID userId);
+
+    ExperienceResponse updateExperience(ExperienceRequest experienceRequest, UUID id);
 }

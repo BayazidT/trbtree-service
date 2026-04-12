@@ -28,6 +28,15 @@ public class HobbyServiceImpl implements HobbyService {
     }
 
     @Override
+    public HobbyResponse updateHobby(HobbyRequest hobbyRequest, UUID id) {
+        Hobby oldEntry = repository.findById(id).orElse(null);
+        Hobby hobby = hobbyMapper.toEntity(hobbyRequest);
+        hobby.setUserId(oldEntry.getUserId());
+        repository.delete(oldEntry);
+        return hobbyMapper.toDTO(repository.save(hobby));
+    }
+
+    @Override
     public HobbyResponse addHobby(HobbyRequest hobbyRequest, UUID userId) {
         Hobby hobby = hobbyMapper.toEntity(hobbyRequest);
         hobby.setUserId(userId);

@@ -30,4 +30,10 @@ public class ProjectController {
         ProjectResponse response = projectService.createProject(request, userId);
         return ResponseEntity.ok(response);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProjectResponse> updateProject(@PathVariable UUID id, @RequestBody ProjectRequest request) {
+        ProjectResponse response = projectService.updateProject(request, id);
+        return ResponseEntity.ok(response);
+    }
 }

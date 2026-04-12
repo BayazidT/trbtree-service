@@ -5,7 +5,6 @@ import com.trbtree.service.modules.protfolio.repository.*;
 import com.trbtree.service.modules.protfolio.service.*;
 import com.trbtree.service.modules.protfolio.service.impl.*;
 import com.trbtree.service.modules.user.repository.UserRepository;
-import com.trbtree.service.modules.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 
@@ -27,6 +26,8 @@ public class Configuration {
     private final HobbyMapper hobbyMapper;
     private final LanguageRepository languageRepository;
     private final LanguageMapper languageMapper;
+    private final PublicationRepository publicationRepository;
+    private final PublicationMapper publicationMapper;
 
     @Bean
     public EducationService getEducationServiceImpl(){
@@ -61,6 +62,11 @@ public class Configuration {
     @Bean
     public LanguageService getLanguageServiceImpl(){
         return new LanguageServiceImpl(languageRepository, languageMapper);
+    }
+
+    @Bean
+    public PublicationService getPublicationServiceImpl(){
+        return new PublicationServiceImpl(publicationRepository, publicationMapper);
     }
 }
 

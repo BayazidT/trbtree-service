@@ -13,4 +13,6 @@ public interface SkillService {
     List<SkillResponse> getSkill(UUID userId);
 
     SkillResponse createSkill(SkillRequest request, UUID userId);
+
+    SkillResponse updateSkill(SkillRequest request, UUID id);
 }
