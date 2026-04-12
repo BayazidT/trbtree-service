@@ -68,5 +68,6 @@ public class Configuration {
     public PublicationService getPublicationServiceImpl(){
         return new PublicationServiceImpl(publicationRepository, publicationMapper);
     }
+
 }
 

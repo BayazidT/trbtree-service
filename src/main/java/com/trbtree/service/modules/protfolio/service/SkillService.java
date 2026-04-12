@@ -14,5 +14,5 @@ public interface SkillService {
 
     SkillResponse createSkill(SkillRequest request, UUID userId);
 
-    SkillResponse updateSkill(SkillRequest request, UUID id);
+    SkillResponse updateSkill(SkillRequest request, java.util.UUID id);
 }
