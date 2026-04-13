@@ -14,5 +14,5 @@ public interface ProjectService {
 
     ProjectResponse createProject(ProjectRequest request, UUID userId);
 
-    ProjectResponse updateProject(ProjectRequest request, UUID id);
+    ProjectResponse updateProject(ProjectRequest request, java.util.UUID id);
 }

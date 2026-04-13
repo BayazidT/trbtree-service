@@ -38,19 +38,9 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public List<LanguageResponse> getLanguages(UUID userId) {
         return Optional.ofNullable(languageRepository.findByUserId(userId))
-                .orElse(Collections.emptyList());
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(languageMapper::toDTO)
+                .toList();
     }
-//    @Override
-//    public List<LanguageResponse> getLanguages(UUID userId) {
-//        return Optional.ofNullable(languageRepository.findByUserId(userId))
-//                .orElse(Collections.emptyList())
-//                .stream()
-//                .map(languageMapper::toDTO)
-//                .toList();
-//    }
-    //Optional.ofNullable(certificationRepository.findByUserId(userId))
-    //                .orElse(Collections.emptyList())
-    //                .stream()
-    //                .map(certificationMapper::toDTO)
-    //                .toList();
 }

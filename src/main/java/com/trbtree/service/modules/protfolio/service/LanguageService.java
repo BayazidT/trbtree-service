@@ -13,5 +13,5 @@ public interface LanguageService {
 
     LanguageResponse addLanguage(LanguageRequest languageRequest, UUID userId);
 
-    LanguageResponse updateLanguage(LanguageRequest languageRequest, UUID id);
+    LanguageResponse updateLanguage(LanguageRequest languageRequest, java.util.UUID id);
 }

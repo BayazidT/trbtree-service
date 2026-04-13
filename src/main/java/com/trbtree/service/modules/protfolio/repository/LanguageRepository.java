@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LanguageRepository extends JpaRepository<Language, UUID> {
-    List<LanguageResponse> findByUserId(UUID userId);
+    List<Language> findByUserId(UUID userId);
 }
