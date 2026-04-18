@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "bio_data")
+@Table(name = "bio_data", schema = "trbtree")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -47,10 +47,8 @@ public class BioData {
     // Religion & Culture
     // ========================
     private String religion;
-    private String sect;
-    private String caste;
-    private String subCaste;
-    private String motherTongue;
+
+
 
     // ========================
     // Education & Career
@@ -99,7 +97,7 @@ public class BioData {
     // ========================
     // Status
     // ========================
-    private Boolean openToMarry;
+
     private Boolean isPublic;
     private Boolean showContact;
 

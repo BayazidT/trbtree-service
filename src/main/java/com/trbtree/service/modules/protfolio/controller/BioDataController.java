@@ -1,6 +1,7 @@
 package com.trbtree.service.modules.protfolio.controller;
 
 
+import com.trbtree.service.modules.protfolio.dto.BioDataRequest;
 import com.trbtree.service.modules.protfolio.dto.BioDataResponse;
 import com.trbtree.service.modules.protfolio.service.BioDataService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class BioDataController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<BioDataResponse> getBioData(@PathVariable UUID userId) {
+        BioDataResponse response = bioDataService.getBioData(userId);
         return ResponseEntity.ok(null);
 
     }

@@ -21,10 +21,6 @@ public class BioDataRequest {
     private String country;
 
     private String religion;
-    private String sect;
-    private String caste;
-    private String subCaste;
-    private String motherTongue;
 
     private String highestEducation;
     private String fieldOfStudy;
@@ -49,7 +45,6 @@ public class BioDataRequest {
     private String profilePictureUrl;
     private List<String> galleryUrls;
 
-    private Boolean openToMarry;
     private Boolean isPublic;
     private Boolean showContact;
 }
