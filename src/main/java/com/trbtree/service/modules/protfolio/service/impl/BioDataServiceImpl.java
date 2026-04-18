@@ -21,7 +21,7 @@ public class BioDataServiceImpl implements BioDataService {
         bioDataRepository.delete(bioData);
         BioData newBioData = bioDataMapper.toEntity(request);
         newBioData.setUserId(userId);
-        return bioDataMapper.toDTO(bioDataRepository.save(bioData));
+        return bioDataMapper.toDTO(bioDataRepository.save(newBioData));
     }
 
     @Override
