@@ -30,4 +30,18 @@ public class BioDataController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/{userId}")
+    public ResponseEntity<BioDataResponse> updateBioData(@PathVariable UUID userId, @RequestBody BioDataRequest request) {
+        BioDataResponse response = bioDataService.updateBioData(userId, request);
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteBioData(@PathVariable UUID userId) {
+         bioDataService.deleteBioData(userId);
+        return ResponseEntity.ok("Deleted Successfully!");
+
+    }
+
+
 }

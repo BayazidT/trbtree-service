@@ -11,4 +11,8 @@ public interface BioDataService {
     BioDataResponse getBioData(UUID userId);
 
     BioDataResponse createBioData(UUID userId, BioDataRequest request);
+
+    BioDataResponse updateBioData(UUID userId, BioDataRequest request);
+
+    void deleteBioData(UUID userId);
 }
