@@ -6,12 +6,15 @@ CREATE TABLE bio_data (
     -- Basic Personal Info
                                  gender            VARCHAR(20) NOT NULL,
                                  date_of_birth     DATE NOT NULL,
-                                 height_cm         SMALLINT,
-                                 weight_kg         SMALLINT,
+                                 place_of_birth    VARCHAR(50) NULL,
+                                 height            VARCHAR(10),
+                                 weight            SMALLINT,
                                  blood_group       VARCHAR(5),
                                  marital_status    VARCHAR(50) NOT NULL, -- NEVER_MARRIED, DIVORCED, etc.
 
     -- Location
+                                 present_address              VARCHAR(100),
+                                 permanent_address              VARCHAR(100),
                                  city              VARCHAR(100),
                                  state             VARCHAR(100),
                                  country           VARCHAR(100),
@@ -28,10 +31,13 @@ CREATE TABLE bio_data (
                                  currency          VARCHAR(10),
 
     -- Family Info
+                                 father_name VARCHAR(150),
                                  father_occupation VARCHAR(150),
+                                 mother_name VARCHAR(150),
                                  mother_occupation VARCHAR(150),
                                  siblings_count    SMALLINT,
                                  family_type       VARCHAR(50),   -- Nuclear / Joint
+                                 family_details    TEXT,   -- Nuclear / Joint
                                  family_status     VARCHAR(50),   -- Middle / Upper / Rich
 
     -- Lifestyle

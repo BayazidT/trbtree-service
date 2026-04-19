@@ -27,11 +27,10 @@ public class BioData {
     // Basic Info
     // ========================
     private String gender;
-
     private LocalDate dateOfBirth;
-
-    private Short heightCm;
-    private Short weightKg;
+    private String height;
+    private String placeOfBirth;
+    private Short weight;
 
     private String bloodGroup;
     private String maritalStatus;
@@ -39,6 +38,8 @@ public class BioData {
     // ========================
     // Location
     // ========================
+    private String presentAddress;
+    private String permanentAddress;
     private String city;
     private String state;
     private String country;
@@ -64,9 +65,12 @@ public class BioData {
     // Family
     // ========================
     private String fatherOccupation;
+    private String fatherName;
     private String motherOccupation;
+    private String motherName;
     private Short siblingsCount;
     private String familyType;
+    private String familyDetails;
     private String familyStatus;
 
     // ========================
