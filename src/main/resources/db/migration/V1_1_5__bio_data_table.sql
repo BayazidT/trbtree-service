@@ -48,6 +48,12 @@ CREATE TABLE bio_data (
     -- About
                                  about_me            TEXT,
                                  partner_expectation TEXT,
+                                 preferred_age            VARCHAR(50),
+                                 preferred_education      VARCHAR,
+                                 preferred_profession     VARCHAR,
+                                 preferred_location       VARCHAR,
+                                 shift_abroad             BOOLEAN,
+
 
     -- Media
                                  profile_picture_url TEXT,

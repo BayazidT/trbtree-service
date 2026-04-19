@@ -89,6 +89,12 @@ public class BioData {
     @Column(columnDefinition = "TEXT")
     private String partnerExpectation;
 
+    private String preferred_age;
+    private String preferred_education ;
+    private String preferred_profession;
+    private String preferred_location;
+    private Boolean shift_abroad;
+
     // ========================
     // Media
     // ========================

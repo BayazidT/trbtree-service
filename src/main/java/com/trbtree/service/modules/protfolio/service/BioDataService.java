@@ -14,5 +14,5 @@ public interface BioDataService {
 
     BioDataResponse updateBioData(UUID userId, BioDataRequest request);
 
-    void deleteBioData(UUID userId);
+    void deleteBioData(java.util.UUID userId);
 }
