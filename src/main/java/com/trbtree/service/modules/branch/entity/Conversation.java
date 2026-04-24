@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "conversations")
+@Table(name = "conversations", schema = "trbtree")
 @Getter
 @Setter
 public class Conversation {
@@ -26,5 +26,5 @@ public class Conversation {
     private Instant updatedAt = Instant.now();
 
     private UUID lastMessageId;
-    private Instant lastMessageAt;
+//    private Instant lastMessageAt;
 }

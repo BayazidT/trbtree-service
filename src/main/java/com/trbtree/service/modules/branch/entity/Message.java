@@ -10,7 +10,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "messages")
+@Table(name = "messages", schema = "trbtree")
 @Getter
 @Setter
 public class Message {

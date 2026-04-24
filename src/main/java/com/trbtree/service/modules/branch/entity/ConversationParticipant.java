@@ -9,8 +9,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(
-        name = "conversation_participants",
+@Table(name = "conversation_participants", schema = "trbtree",
         uniqueConstraints = @UniqueConstraint(columnNames = {"conversation_id", "user_id"})
 )
 @Getter
