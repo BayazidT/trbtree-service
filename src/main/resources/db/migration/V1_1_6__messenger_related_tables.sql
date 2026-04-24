@@ -2,6 +2,8 @@ CREATE TABLE conversations (
                                id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
                                type VARCHAR(20) NOT NULL DEFAULT 'DIRECT',
+                               last_message_id UUID,
+
     -- DIRECT | GROUP (future-safe)
 
                                created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
