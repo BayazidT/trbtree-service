@@ -7,7 +7,6 @@ import com.trbtree.service.modules.branch.mapper.MessageMapper;
 import com.trbtree.service.modules.branch.repository.MessageRepository;
 import com.trbtree.service.modules.branch.service.MessageService;
 import com.trbtree.service.modules.user.entity.User;
-import com.trbtree.service.modules.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

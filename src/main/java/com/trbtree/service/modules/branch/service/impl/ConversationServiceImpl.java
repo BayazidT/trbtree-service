@@ -1,5 +1,6 @@
 package com.trbtree.service.modules.branch.service.impl;
 
+import com.trbtree.service.modules.branch.dto.ConversationResponse;
 import com.trbtree.service.modules.branch.dto.CreateConversationRequest;
 import com.trbtree.service.modules.branch.entity.Conversation;
 import com.trbtree.service.modules.branch.entity.ConversationParticipant;
@@ -12,11 +13,42 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public class ConversationServiceImpl implements ConversationService {
     private final ConversationRepository conversationRepository;
     private final ConversationParticipantRepository participantRepository;
+
+    @Override
+    public List<ConversationResponse> getConversations(UUID userId) {
+        List<ConversationParticipant> conversationParticipants = participantRepository.findByUserId(userId);
+        List<ConversationResponse> conversationResponses = new ArrayList<>();
+        List<UUID> conversationIds = new ArrayList<>();
+
+        for (ConversationParticipant conversationParticipant : conversationParticipants) {
+            conversationIds.add(conversationParticipant.getConversation().getId());
+        }
+        List<ConversationParticipant> conversationParticipantListFilterList = new ArrayList<>();
+        conversationIds.stream().forEach(conversationId -> {
+            List<ConversationParticipant> conversationParticipantList = participantRepository.findByConversationId(conversationId);
+            conversationParticipantListFilterList.addAll(conversationParticipantList);
+        });
+        for (ConversationParticipant conversationParticipant : conversationParticipantListFilterList) {
+            if(!conversationParticipant.getUser().getId().equals(userId)) {
+                ConversationResponse response = ConversationResponse
+                        .builder()
+                        .conversationId(conversationParticipant.getConversation().getId())
+                        .otherUsername(conversationParticipant.getUser().getUsername())
+                        .otherUserId(conversationParticipant.getUser().getId())
+                        .build();
+                conversationResponses.add(response);
+            }
+        }
+
+        return conversationResponses;
+    }
+
     @Override
     public void startConversation(CreateConversationRequest request) {
         Conversation entity = new Conversation();
