@@ -50,7 +50,7 @@ public class ConversationServiceImpl implements ConversationService {
     }
 
     @Override
-    public void startConversation(CreateConversationRequest request) {
+    public void startConversation(CreateConversationRequest request, UUID userId) {
         Conversation entity = new Conversation();
         entity.setType(ConversationType.DIRECT);
         Conversation conversation = conversationRepository.save(entity);
