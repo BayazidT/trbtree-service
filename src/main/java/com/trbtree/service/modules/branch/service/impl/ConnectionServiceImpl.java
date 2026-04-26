@@ -1,0 +1,37 @@
+package com.trbtree.service.modules.branch.service.impl;
+
+import com.trbtree.service.modules.branch.dto.ConnectionResponse;
+import com.trbtree.service.modules.branch.dto.SendConnectionRequest;
+import com.trbtree.service.modules.branch.entity.UserConnection;
+import com.trbtree.service.modules.branch.enums.ConnectionStatus;
+import com.trbtree.service.modules.branch.mapper.UserConnectionMapper;
+import com.trbtree.service.modules.branch.repository.ConnectionRepository;
+import com.trbtree.service.modules.branch.service.ConnectionService;
+import com.trbtree.service.modules.user.entity.User;
+import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+import java.util.UUID;
+
+@RequiredArgsConstructor
+public class ConnectionServiceImpl implements ConnectionService {
+    private final ConnectionRepository connectionRepository;
+    private final UserConnectionMapper userConnectionMapper;
+
+    @Override
+    public List<ConnectionResponse> getConnections(UUID userId) {
+        List<UserConnection> connections = connectionRepository.findByAddresseeId(userId);
+        return userConnectionMapper.toDTOList(connections);
+    }
+
+    @Override
+    public ConnectionResponse addConnection(SendConnectionRequest request, UUID userId) {
+        UserConnection userConnection = userConnectionMapper.toEntity(request);
+        User user = new User();
+        user.setId(userId);
+        userConnection.setRequester(user);
+        userConnection.setStatus(ConnectionStatus.PENDING);
+        UserConnection response = connectionRepository.save(userConnection);
+        return userConnectionMapper.toDTO(response);
+    }
+}
