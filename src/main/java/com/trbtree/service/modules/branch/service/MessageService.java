@@ -10,4 +10,8 @@ public interface MessageService {
     void sendMessage(UUID userId, SendMessageRequest message);
 
     List<MessageResponse> getMessage(UUID conversationId);
+
+    void deleteMessage(UUID messageId);
+
+    List<MessageResponse> updateMessage(SendMessageRequest request, UUID messageId);
 }

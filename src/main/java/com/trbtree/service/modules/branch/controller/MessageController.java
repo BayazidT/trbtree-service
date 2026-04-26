@@ -28,4 +28,16 @@ public class MessageController {
         return response;
 
     }
+
+    @PutMapping("/{messageId}")
+    public List<MessageResponse> updateMessage(@PathVariable UUID messageId, @RequestBody SendMessageRequest request){
+        List<MessageResponse> messageResponse = messageService.updateMessage(request, messageId);
+        return messageResponse;
+    }
+
+    @DeleteMapping("/{messageId}")
+    public String deleteMessage(@PathVariable UUID messageId) {
+        messageService.deleteMessage(messageId);
+        return "Message deleted successfully";
+    }
 }
