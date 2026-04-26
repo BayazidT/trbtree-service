@@ -1,5 +1,6 @@
 package com.trbtree.service.modules.branch.service.impl;
 
+import com.trbtree.service.modules.branch.dto.MessageResponse;
 import com.trbtree.service.modules.branch.dto.SendMessageRequest;
 import com.trbtree.service.modules.branch.entity.Conversation;
 import com.trbtree.service.modules.branch.entity.Message;
@@ -9,6 +10,7 @@ import com.trbtree.service.modules.branch.service.MessageService;
 import com.trbtree.service.modules.user.entity.User;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -26,5 +28,11 @@ public class MessageServiceImpl implements MessageService {
         messageEntity.setSender(user);
         messageEntity.setConversation(conversation);
         messageRepository.save(messageEntity);
+    }
+
+    @Override
+    public List<MessageResponse> getMessage(UUID conversationId) {
+        List<Message> messages = messageRepository.findByConversationId(conversationId);
+        return messageMapper.toDTOList(messages);
     }
 }
