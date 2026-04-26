@@ -5,8 +5,12 @@ import com.trbtree.service.modules.branch.dto.SendMessageRequest;
 import com.trbtree.service.modules.branch.entity.Message;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface MessageMapper {
     Message toEntity(SendMessageRequest dto);
     MessageResponse toDTO(Message entity);
+
+    List<MessageResponse> toDTOList(List<Message> entityList);
 }

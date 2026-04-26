@@ -18,8 +18,8 @@ public class ConversationController {
     private final ConversationService conversationService;
 
     @PostMapping("/{userId}")
-    public String startConversation(@Valid @RequestBody CreateConversationRequest request, @PathVariable String userId) {
-        conversationService.startConversation(request);
+    public String startConversation(@Valid @RequestBody CreateConversationRequest request, @PathVariable UUID userId) {
+        conversationService.startConversation(request, userId);
         return "Conversation started!";
     }
      @GetMapping("/{userId}")

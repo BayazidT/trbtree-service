@@ -5,12 +5,14 @@ import com.trbtree.service.modules.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @Entity
 @Table(name = "messages", schema = "trbtree")
+//@Where(clause = "deleted_at != null" )
 @Getter
 @Setter
 public class Message {
