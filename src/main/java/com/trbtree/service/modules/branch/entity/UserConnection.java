@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Table(
-        name = "user_connections",
+        name = "user_connections", schema = "trbtree",
         uniqueConstraints = @UniqueConstraint(columnNames = {"requester_id", "addressee_id"})
 )
 @Getter
