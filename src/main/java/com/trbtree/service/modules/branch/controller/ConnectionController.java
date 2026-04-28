@@ -27,5 +27,10 @@ public class ConnectionController {
         return response;
     }
 
+    @DeleteMapping("/{connectionId")
+    public void deleteConnection(@PathVariable UUID connectionId) {
+        connectionService.deleteConnection(connectionId);
+    }
+
 
 }

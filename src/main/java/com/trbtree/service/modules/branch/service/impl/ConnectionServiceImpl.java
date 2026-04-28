@@ -25,6 +25,11 @@ public class ConnectionServiceImpl implements ConnectionService {
     }
 
     @Override
+    public void deleteConnection(UUID connectionId) {
+        connectionRepository.deleteById(connectionId);
+    }
+
+    @Override
     public ConnectionResponse addConnection(SendConnectionRequest request, UUID userId) {
         UserConnection userConnection = userConnectionMapper.toEntity(request);
         User user = new User();
