@@ -10,4 +10,6 @@ public interface ConnectionService {
     List<ConnectionResponse> getConnections(UUID userId);
 
     ConnectionResponse addConnection(SendConnectionRequest request, UUID userId);
+
+    void deleteConnection(UUID connectionId);
 }
