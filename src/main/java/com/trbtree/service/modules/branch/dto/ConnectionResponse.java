@@ -17,8 +17,8 @@ public class ConnectionResponse {
     private UUID requesterId;
     private UUID addresseeId;
 
-    private String requesterUsername;
-    private String addresseeUsername;
+    private String requesterName;
+    private String addresseeName;
 
     private String status;
 
