@@ -35,6 +35,9 @@ public class ConnectionServiceImpl implements ConnectionService {
         User user = new User();
         user.setId(userId);
         userConnection.setRequester(user);
+        User addresse= new User();
+        addresse.setId(request.getAddresseeId());
+        userConnection.setAddressee(addresse);
         userConnection.setStatus(ConnectionStatus.PENDING);
         UserConnection response = connectionRepository.save(userConnection);
         return userConnectionMapper.toDTO(response);
