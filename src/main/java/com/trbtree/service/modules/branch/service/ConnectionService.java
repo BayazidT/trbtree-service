@@ -1,6 +1,7 @@
 package com.trbtree.service.modules.branch.service;
 
 import com.trbtree.service.modules.branch.dto.ConnectionResponse;
+import com.trbtree.service.modules.branch.dto.ConnectionUpdateRequest;
 import com.trbtree.service.modules.branch.dto.SendConnectionRequest;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface ConnectionService {
     ConnectionResponse addConnection(SendConnectionRequest request, UUID userId);
 
     void deleteConnection(UUID connectionId);
+
+    List<ConnectionResponse> update(UUID connectionId, ConnectionUpdateRequest request);
 }
