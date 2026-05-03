@@ -14,5 +14,5 @@ public interface ConnectionService {
 
     void deleteConnection(UUID connectionId);
 
-    List<ConnectionResponse> update(UUID connectionId, ConnectionUpdateRequest request);
+    List<ConnectionResponse> update(java.util.UUID connectionId, ConnectionUpdateRequest request);
 }
