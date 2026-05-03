@@ -2,12 +2,14 @@ package com.trbtree.service.modules.branch.service.impl;
 
 import com.trbtree.service.modules.branch.dto.ConversationResponse;
 import com.trbtree.service.modules.branch.dto.CreateConversationRequest;
+import com.trbtree.service.modules.branch.dto.MessageResponse;
 import com.trbtree.service.modules.branch.entity.Conversation;
 import com.trbtree.service.modules.branch.entity.ConversationParticipant;
 import com.trbtree.service.modules.branch.enums.ConversationType;
 import com.trbtree.service.modules.branch.repository.ConversationParticipantRepository;
 import com.trbtree.service.modules.branch.repository.ConversationRepository;
 import com.trbtree.service.modules.branch.service.ConversationService;
+import com.trbtree.service.modules.branch.service.MessageService;
 import com.trbtree.service.modules.user.entity.User;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class ConversationServiceImpl implements ConversationService {
     private final ConversationRepository conversationRepository;
     private final ConversationParticipantRepository participantRepository;
+    private final MessageService messageService;
 
     @Override
     public List<ConversationResponse> getConversations(UUID userId) {
@@ -35,18 +38,25 @@ public class ConversationServiceImpl implements ConversationService {
             conversationParticipantListFilterList.addAll(conversationParticipantList);
         });
         for (ConversationParticipant conversationParticipant : conversationParticipantListFilterList) {
+
             if(!conversationParticipant.getUser().getId().equals(userId)) {
                 ConversationResponse response = ConversationResponse
                         .builder()
                         .conversationId(conversationParticipant.getConversation().getId())
-                        .otherUsername(conversationParticipant.getUser().getUsername())
+                        .otherUsername(conversationParticipant.getUser().getName())
                         .otherUserId(conversationParticipant.getUser().getId())
+                        .lastMessage(getLastMessage(conversationParticipant.getConversation().getId()))
                         .build();
                 conversationResponses.add(response);
             }
         }
 
         return conversationResponses;
+    }
+
+    private String getLastMessage(UUID id) {
+        List<MessageResponse> messageResponses =  messageService.getMessage(id);
+        return messageResponses.get(messageResponses.size()-1).getContent();
     }
 
     @Override

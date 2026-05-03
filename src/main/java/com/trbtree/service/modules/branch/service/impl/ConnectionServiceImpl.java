@@ -1,6 +1,7 @@
 package com.trbtree.service.modules.branch.service.impl;
 
 import com.trbtree.service.modules.branch.dto.ConnectionResponse;
+import com.trbtree.service.modules.branch.dto.ConnectionUpdateRequest;
 import com.trbtree.service.modules.branch.dto.SendConnectionRequest;
 import com.trbtree.service.modules.branch.entity.UserConnection;
 import com.trbtree.service.modules.branch.enums.ConnectionStatus;
@@ -41,5 +42,13 @@ public class ConnectionServiceImpl implements ConnectionService {
         userConnection.setStatus(ConnectionStatus.PENDING);
         UserConnection response = connectionRepository.save(userConnection);
         return userConnectionMapper.toDTO(response);
+    }
+
+    @Override
+    public List<ConnectionResponse> update(UUID connectionId, ConnectionUpdateRequest request) {
+        UserConnection connection =connectionRepository.findById(connectionId).orElseThrow();
+        connection.setStatus(request.getStatus());
+        connectionRepository.save(connection);
+        return getConnections(connection.getAddressee().getId());
     }
 }
