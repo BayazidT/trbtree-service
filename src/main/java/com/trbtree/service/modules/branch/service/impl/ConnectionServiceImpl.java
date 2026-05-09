@@ -21,7 +21,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 
     @Override
     public List<ConnectionResponse> getConnections(UUID userId) {
-        List<UserConnection> connections = connectionRepository.findByAddresseeId(userId);
+        List<UserConnection> connections = connectionRepository.findByRequesterId(userId);
         return userConnectionMapper.toDTOList(connections);
     }
 
@@ -42,6 +42,12 @@ public class ConnectionServiceImpl implements ConnectionService {
         userConnection.setStatus(ConnectionStatus.PENDING);
         UserConnection response = connectionRepository.save(userConnection);
         return userConnectionMapper.toDTO(response);
+    }
+
+    @Override
+    public List<ConnectionResponse> getConnectionsReceived(UUID userId) {
+        List<UserConnection> connections = connectionRepository.findByAddresseeId(userId);
+        return userConnectionMapper.toDTOList(connections);
     }
 
     @Override
