@@ -19,7 +19,7 @@ public class ConnectionController {
 
     @GetMapping("receive/{userId}")
     public ConnectionResponseList getConnectionsReceived(@PathVariable UUID userId) {
-        List<ConnectionResponse> connectionResponses = connectionService.getConnections(userId);
+        List<ConnectionResponse> connectionResponses = connectionService.getConnectionsReceived(userId);
         ConnectionResponseList connectionResponseList = new ConnectionResponseList();
         connectionResponseList.setConnections(connectionResponses);
         return connectionResponseList;
