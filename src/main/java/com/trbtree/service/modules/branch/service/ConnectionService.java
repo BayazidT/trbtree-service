@@ -18,5 +18,5 @@ public interface ConnectionService {
 
     List<ConnectionResponse> getConnectionsReceived(UUID userId);
 
-    List<ConnectionResponse> getConnectionsSent(UUID userId);
+    List<ConnectionResponse> getConnectionsSent(java.util.UUID userId);
 }
