@@ -17,4 +17,6 @@ public interface ConnectionService {
     List<ConnectionResponse> update(java.util.UUID connectionId, ConnectionUpdateRequest request);
 
     List<ConnectionResponse> getConnectionsReceived(UUID userId);
+
+    List<ConnectionResponse> getConnectionsSent(java.util.UUID userId);
 }

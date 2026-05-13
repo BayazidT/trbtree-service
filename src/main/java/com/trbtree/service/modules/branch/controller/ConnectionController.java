@@ -17,6 +17,14 @@ import java.util.UUID;
 public class ConnectionController {
     private final ConnectionService connectionService;
 
+    @GetMapping("/{userId}")
+    public ConnectionResponseList getConnections(@PathVariable UUID userId) {
+        List<ConnectionResponse> connectionResponses = connectionService.getConnections(userId);
+        ConnectionResponseList connectionResponseList = new ConnectionResponseList();
+        connectionResponseList.setConnections(connectionResponses);
+        return connectionResponseList;
+    }
+
     @GetMapping("receive/{userId}")
     public ConnectionResponseList getConnectionsReceived(@PathVariable UUID userId) {
         List<ConnectionResponse> connectionResponses = connectionService.getConnectionsReceived(userId);
@@ -26,7 +34,7 @@ public class ConnectionController {
     }
     @GetMapping("sent/{userId}")
     public ConnectionResponseList getConnectionsSent(@PathVariable UUID userId) {
-        List<ConnectionResponse> connectionResponses = connectionService.getConnections(userId);
+        List<ConnectionResponse> connectionResponses = connectionService.getConnectionsSent(userId);
         ConnectionResponseList connectionResponseList = new ConnectionResponseList();
         connectionResponseList.setConnections(connectionResponses);
         return connectionResponseList;
