@@ -28,4 +28,10 @@ public class ConversationController {
         return responses;
      }
 
+     @GetMapping("/{userId}/{participantId}")
+    public Boolean getIfConversationExist(@PathVariable UUID userId, @PathVariable UUID participantId) {
+        Boolean response = conversationService.checkIfConversationExist(userId, participantId);
+        return response;
+     }
+
 }
