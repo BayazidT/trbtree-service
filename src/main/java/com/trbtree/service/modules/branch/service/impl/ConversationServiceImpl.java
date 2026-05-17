@@ -24,6 +24,13 @@ public class ConversationServiceImpl implements ConversationService {
     private final MessageService messageService;
 
     @Override
+    public Boolean checkIfConversationExist(UUID userId, UUID participantId) {
+        List<Conversation> conversations = participantRepository.checkIfConversationExist(userId, participantId);
+
+        return null;
+    }
+
+    @Override
     public List<ConversationResponse> getConversations(UUID userId) {
         List<ConversationParticipant> conversationParticipants = participantRepository.findByUserId(userId);
         List<ConversationResponse> conversationResponses = new ArrayList<>();

@@ -10,4 +10,6 @@ public interface ConversationService {
     void startConversation(CreateConversationRequest request, UUID userId);
 
     List<ConversationResponse> getConversations(UUID userId);
+
+    Boolean checkIfConversationExist(UUID userId, UUID participantId);
 }
