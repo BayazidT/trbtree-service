@@ -63,15 +63,28 @@ public class ConversationServiceImpl implements ConversationService {
 
     private String getLastMessage(UUID id) {
         List<MessageResponse> messageResponses =  messageService.getMessage(id);
-        return messageResponses.get(messageResponses.size()-1).getContent();
+        if(messageResponses.size() > 0) {
+            return messageResponses.get(messageResponses.size()-1).getContent();
+        }
+        return null;
     }
 
     @Override
-    public void startConversation(CreateConversationRequest request, UUID userId) {
+    public UUID startConversation(CreateConversationRequest request, UUID userId) {
         Conversation entity = new Conversation();
         entity.setType(ConversationType.DIRECT);
         Conversation conversation = conversationRepository.save(entity);
+
         List<ConversationParticipant> participantList = new ArrayList<>();
+        User sender = new User();
+        sender.setId(userId);
+        ConversationParticipant conversationCreator = new ConversationParticipant();
+        conversationCreator.setConversation(conversation);
+        conversationCreator.setUser(sender);
+        participantList.add(conversationCreator);
+
+
+
 
         request.getParticipantIds().forEach(conversationParticipantId -> {
             ConversationParticipant conversationParticipant = new ConversationParticipant();
@@ -83,6 +96,6 @@ public class ConversationServiceImpl implements ConversationService {
             participantList.add(conversationParticipant);
         });
         participantRepository.saveAll(participantList);
-
+        return conversation.getId();
     }
 }

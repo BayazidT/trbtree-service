@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ConversationService {
-    void startConversation(CreateConversationRequest request, UUID userId);
+    UUID startConversation(CreateConversationRequest request, UUID userId);
 
     List<ConversationResponse> getConversations(UUID userId);
 

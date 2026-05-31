@@ -18,9 +18,9 @@ public class ConversationController {
     private final ConversationService conversationService;
 
     @PostMapping("/{userId}")
-    public String startConversation(@Valid @RequestBody CreateConversationRequest request, @PathVariable UUID userId) {
-        conversationService.startConversation(request, userId);
-        return "Conversation started!";
+    public UUID startConversation(@Valid @RequestBody CreateConversationRequest request, @PathVariable UUID userId) {
+        UUID conversationId = conversationService.startConversation(request, userId);
+        return conversationId;
     }
      @GetMapping("/{userId}")
     public List<ConversationResponse> getConversation(@PathVariable UUID userId){
