@@ -25,9 +25,12 @@ public class ConversationServiceImpl implements ConversationService {
 
     @Override
     public Boolean checkIfConversationExist(UUID userId, UUID participantId) {
-        List<Conversation> conversations = participantRepository.checkIfConversationExist(userId, participantId);
+        List<UUID> conversationIds = participantRepository.checkIfConversationExist(userId, participantId);
+        if (conversationIds.isEmpty()) {
+            return false;
+        }
 
-        return null;
+        return conversationIds.stream().distinct().count() < conversationIds.size();
     }
 
     @Override

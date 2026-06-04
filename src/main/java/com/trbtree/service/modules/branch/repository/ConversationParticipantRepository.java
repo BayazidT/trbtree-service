@@ -15,10 +15,10 @@ public interface ConversationParticipantRepository extends JpaRepository<Convers
     List<ConversationParticipant> findByConversationId(UUID id);
 
     @Query("""
-    SELECT cp
+    SELECT cp.conversation.id
     FROM ConversationParticipant cp
     WHERE (cp.user.id = :userId
        OR cp.user.id = :participantId)
 """)
-    List<Conversation> checkIfConversationExist(UUID userId, UUID participantId);
+    List<UUID> checkIfConversationExist(UUID userId, UUID participantId);
 }
