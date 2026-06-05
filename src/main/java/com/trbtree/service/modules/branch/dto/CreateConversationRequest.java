@@ -10,4 +10,5 @@ import java.util.UUID;
 @Setter
 public class CreateConversationRequest {
     private List<UUID> participantIds;
+    private UUID participantId;
 }

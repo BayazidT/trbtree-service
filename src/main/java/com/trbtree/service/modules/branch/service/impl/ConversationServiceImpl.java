@@ -86,18 +86,23 @@ public class ConversationServiceImpl implements ConversationService {
         conversationCreator.setUser(sender);
         participantList.add(conversationCreator);
 
-
-
-
-        request.getParticipantIds().forEach(conversationParticipantId -> {
-            ConversationParticipant conversationParticipant = new ConversationParticipant();
-            User user = new User();
-            user.setId(conversationParticipantId);
-
-            conversationParticipant.setConversation(conversation);
-            conversationParticipant.setUser(user);
-            participantList.add(conversationParticipant);
-        });
+//        if(!request.getParticipantIds().isEmpty()) {
+//            request.getParticipantIds().forEach(conversationParticipantId -> {
+//                ConversationParticipant conversationParticipant = new ConversationParticipant();
+//                User user = new User();
+//                user.setId(conversationParticipantId);
+//
+//                conversationParticipant.setConversation(conversation);
+//                conversationParticipant.setUser(user);
+//                participantList.add(conversationParticipant);
+//            });
+//        }
+        User user = new User();
+        user.setId(request.getParticipantId());
+        ConversationParticipant conversationParticipant = new ConversationParticipant();
+        conversationParticipant.setUser(user);
+        conversationParticipant.setConversation(conversation);
+        participantList.add(conversationParticipant);
         participantRepository.saveAll(participantList);
         return conversation.getId();
     }
