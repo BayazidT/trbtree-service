@@ -24,9 +24,17 @@ public class PostController {
     }
 
     @GetMapping("/{userId}")
-    public PostListResponse getPosts(@PathVariable UUID userId) {
-        PostListResponse responses = postService.getPosts(userId);
+    public PostListResponse getPostsOfAUser(@PathVariable UUID userId) {
+        PostListResponse responses = postService.getPostsOfAUser(userId);
+
         return responses;
     }
+
+    @GetMapping("/")
+    public PostListResponse getPosts() {
+        PostListResponse responses = postService.getPosts();
+        return responses;
+    }
+
 
 }

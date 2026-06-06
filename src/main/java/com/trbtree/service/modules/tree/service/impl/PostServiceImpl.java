@@ -20,8 +20,21 @@ public class PostServiceImpl implements PostService {
     private final PostMapper postMapper;
 
     @Override
-    public PostListResponse getPosts(UUID userId) {
+    public PostListResponse getPostsOfAUser(UUID userId) {
         List<Post> posts = postRepository.findByUserId(userId);
+        List<PostResponse> postResponses = new ArrayList<>();
+        for (Post post : posts) {
+            PostResponse postResponse = postMapper.toResponse(post);
+            postResponses.add(postResponse);
+        }
+        return PostListResponse.builder()
+                .content(postResponses)
+                .build();
+    }
+
+    @Override
+    public PostListResponse getPosts() {
+        List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
         List<PostResponse> postResponses = new ArrayList<>();
         for (Post post : posts) {
             PostResponse postResponse = postMapper.toResponse(post);
