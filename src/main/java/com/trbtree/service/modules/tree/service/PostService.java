@@ -12,5 +12,6 @@ import java.util.UUID;
 public interface PostService {
     PostResponse createPost(UUID userId, PostRequest postRequest);
 
-    PostListResponse getPosts(UUID userId);
+    PostListResponse getPostsOfAUser(UUID userId);
+    PostListResponse getPosts();
 }
