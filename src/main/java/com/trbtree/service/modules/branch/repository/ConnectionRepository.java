@@ -21,4 +21,11 @@ public interface ConnectionRepository extends JpaRepository<UserConnection, UUID
 """)
     List<UserConnection> findAllConnections(@Param("userId") UUID userId);
 
+    @Query("""
+    SELECT uc
+    FROM UserConnection uc
+    WHERE (uc.requester.id = :userId
+       OR uc.addressee.id = :userId)
+""")
+    List<UserConnection> findUserTreeExcept(@Param("userId") UUID userId);
 }
