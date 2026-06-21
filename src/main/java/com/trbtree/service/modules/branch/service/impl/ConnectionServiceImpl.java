@@ -53,6 +53,7 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public List<ConnectionResponse> getConnectionsSent(UUID userId) {
         List<UserConnection> connections = connectionRepository.findByRequesterId(userId);
+
         return userConnectionMapper.toDTOList(connections);    }
 
     @Override

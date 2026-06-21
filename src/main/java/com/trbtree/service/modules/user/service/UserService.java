@@ -7,6 +7,7 @@ import com.trbtree.service.modules.user.dto.UserResponse;
 import com.trbtree.service.modules.user.entity.User;
 import com.trbtree.service.modules.user.mapper.UserMapper;
 import com.trbtree.service.modules.user.repository.UserRepository;
+import com.trbtree.service.modules.user.specification.UserSpecification;
 import com.trbtree.service.rbac.service.UserRoleService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -34,10 +36,11 @@ public class UserService {
     }
 
 
-    public UserListResponse getAll(int page, int size) {
+    public UserListResponse getAll(int page, int size, String search) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
         Pageable pageable = PageRequest.of(page, size, sort);
-        Page<User> userResponses=  userRepository.findAll(pageable);
+        Specification<User> specification =UserSpecification.searchLike(search);
+        Page<User> userResponses=  userRepository.findAll(specification, pageable);
         return new UserListResponse(
                 userResponses.stream()
                         .map(mapper::toResponse)

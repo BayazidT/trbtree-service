@@ -23,8 +23,10 @@ public class UserController {
     @GetMapping
 //    @PreAuthorize("hasAuthority('user:read')")
     public UserListResponse getAll(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "10") int size) {
-        return userService.getAll(page, size);
+                                   @RequestParam(defaultValue = "10") int size,
+                                   @RequestParam(required = false) String search
+                                   ) {
+        return userService.getAll(page, size, search);
     }
 
     @GetMapping("/{id}")
