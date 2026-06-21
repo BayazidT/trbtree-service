@@ -40,6 +40,7 @@ public class UserService {
         Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
         Pageable pageable = PageRequest.of(page, size, sort);
         Specification<User> specification =UserSpecification.searchLike(search);
+//        Page<User> userResponses=  userRepository.findAll(pageable);
         Page<User> userResponses=  userRepository.findAll(specification, pageable);
         return new UserListResponse(
                 userResponses.stream()
