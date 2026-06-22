@@ -14,4 +14,8 @@ public interface PostService {
 
     PostListResponse getPostsOfAUser(UUID userId);
     PostListResponse getPosts();
+
+    PostResponse getPostById(UUID id);
+
+    PostResponse updateLikeCount(UUID id, UUID userId);
 }

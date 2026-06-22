@@ -4,7 +4,9 @@ import com.trbtree.service.modules.tree.dto.PostListResponse;
 import com.trbtree.service.modules.tree.dto.PostRequest;
 import com.trbtree.service.modules.tree.dto.PostResponse;
 import com.trbtree.service.modules.tree.entity.Post;
+import com.trbtree.service.modules.tree.entity.PostLike;
 import com.trbtree.service.modules.tree.mapper.PostMapper;
+import com.trbtree.service.modules.tree.repository.PostLikeRepository;
 import com.trbtree.service.modules.tree.repository.PostRepository;
 import com.trbtree.service.modules.tree.service.PostService;
 import com.trbtree.service.modules.user.entity.User;
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final PostMapper postMapper;
+    private final PostLikeRepository postLikeRepository;
 
     @Override
     public PostListResponse getPostsOfAUser(UUID userId) {
@@ -52,5 +55,27 @@ public class PostServiceImpl implements PostService {
         user.setId(userId);
         post.setUser(user);
         return postMapper.toResponse(postRepository.save(post));
+    }
+
+    @Override
+    public PostResponse getPostById(UUID id) {
+        Post post = postRepository.findById(id).orElse(null);
+        return postMapper.toResponse(post);
+    }
+
+    @Override
+    public PostResponse updateLikeCount(UUID id, UUID userId) {
+        Post post = postRepository.findById(id).orElse(null);
+        User user = new User();
+        user.setId(userId);
+
+        PostLike postLike = new PostLike();
+        postLike.setPost(post);
+        postLike.setUser(user);
+        postLikeRepository.save(postLike);
+
+        post.setLikeCount(post.getLikeCount() + 1);
+        postRepository.save(post);
+        return postMapper.toResponse(post);
     }
 }

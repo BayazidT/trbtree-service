@@ -35,6 +35,17 @@ public class PostController {
         PostListResponse responses = postService.getPosts();
         return responses;
     }
+    @GetMapping("/{id}")
+    public PostResponse getPostById(@PathVariable UUID id) {
+        PostResponse response = postService.getPostById(id);
+        return response;
+    }
+
+    @PatchMapping("/{id}/{userId}")
+    public PostResponse updateLikeCount(@PathVariable UUID id, @PathVariable UUID userId) {
+        PostResponse response = postService.updateLikeCount(id, userId);
+        return response;
+    }
 
 
 }
