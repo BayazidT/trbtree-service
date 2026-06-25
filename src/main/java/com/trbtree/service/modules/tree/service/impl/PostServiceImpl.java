@@ -69,12 +69,26 @@ public class PostServiceImpl implements PostService {
         User user = new User();
         user.setId(userId);
 
-        PostLike postLike = new PostLike();
-        postLike.setPost(post);
-        postLike.setUser(user);
-        postLikeRepository.save(postLike);
-
-        post.setLikeCount(post.getLikeCount() + 1);
+//        PostLike alreadyLiked = postLikeRepository.findByIdAndUserId(id, userId);
+        PostLike alreadyLiked = postLikeRepository.findByPostIdAndUserId(id, userId);
+        System.out.println(alreadyLiked);
+        if(alreadyLiked != null){
+            if(alreadyLiked.isLiked()){
+                alreadyLiked.setLiked(false);
+                postLikeRepository.save(alreadyLiked);
+                post.setLikeCount(post.getLikeCount() - 1);
+            }else {
+                alreadyLiked.setLiked(true);
+                postLikeRepository.save(alreadyLiked);
+                post.setLikeCount(post.getLikeCount() + 1);
+            }
+        }else {
+            PostLike postLike = new PostLike();
+            postLike.setPost(post);
+            postLike.setUser(user);
+            postLikeRepository.save(postLike);
+            post.setLikeCount(post.getLikeCount() + 1);
+        }
         postRepository.save(post);
         return postMapper.toResponse(post);
     }

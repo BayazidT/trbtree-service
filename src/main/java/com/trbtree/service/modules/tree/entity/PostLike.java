@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 public class PostLike {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
