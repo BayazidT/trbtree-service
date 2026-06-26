@@ -1,6 +1,7 @@
 package com.trbtree.service.modules.tree.controller;
 
 
+import com.trbtree.service.modules.tree.dto.PostCommentRequest;
 import com.trbtree.service.modules.tree.dto.PostListResponse;
 import com.trbtree.service.modules.tree.dto.PostRequest;
 import com.trbtree.service.modules.tree.dto.PostResponse;

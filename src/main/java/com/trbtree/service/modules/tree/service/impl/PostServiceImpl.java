@@ -1,5 +1,6 @@
 package com.trbtree.service.modules.tree.service.impl;
 
+import com.trbtree.service.modules.tree.dto.PostCommentRequest;
 import com.trbtree.service.modules.tree.dto.PostListResponse;
 import com.trbtree.service.modules.tree.dto.PostRequest;
 import com.trbtree.service.modules.tree.dto.PostResponse;
@@ -92,4 +93,5 @@ public class PostServiceImpl implements PostService {
         postRepository.save(post);
         return postMapper.toResponse(post);
     }
+
 }
