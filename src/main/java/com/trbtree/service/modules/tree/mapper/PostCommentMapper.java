@@ -18,8 +18,8 @@ public interface PostCommentMapper {
     @Mapping(source = "userId", target = "user.id")
     PostComment toEntity(PostCommentRequest dto);
 
-    @Mapping(source = "user.id", target = "commenterId")
-    @Mapping(source = "user.name", target = "commenterName")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.name", target = "name")
     PostCommentResponse toDTO(PostComment entity);
 
     List<PostCommentResponse> toDTOList(List<PostComment> entityList);

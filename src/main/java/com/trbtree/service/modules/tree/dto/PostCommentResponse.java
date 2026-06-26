@@ -11,8 +11,8 @@ import java.util.UUID;
 public class PostCommentResponse {
     private Integer id;
     private String comment;
-    private String commenterName;
-    private UUID commenterId;
+    private String name;
+    private UUID userId;
     private Instant createdAt;
     private Instant updatedAt;
 
