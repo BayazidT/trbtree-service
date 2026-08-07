@@ -33,10 +33,23 @@ public class PostCommentServiceImpl implements PostCommentService {
     }
 
     @Override
+    public PostCommentResponse updateComment(Integer commentId, PostCommentRequest commentRequest) {
+        PostComment postComment = postCommentMapper.toEntity(commentRequest);
+        repository.deleteById(commentId);
+        PostComment saved = repository.save(postComment);
+        return postCommentMapper.toDTO(saved);
+    }
+
+    @Override
     public PostCommentListResponse getPostCommentsByPostId(UUID postId) {
         List<PostComment> commentList = repository.findByPostId(postId);
         return PostCommentListResponse.builder()
                 .content(postCommentMapper.toDTOList(commentList))
                 .build();
+    }
+
+    @Override
+    public void deleteComment(Integer commentId) {
+        repository.deleteById(commentId);
     }
 }

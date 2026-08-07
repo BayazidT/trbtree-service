@@ -10,4 +10,8 @@ public interface PostCommentService {
     PostCommentResponse createPostComment(PostCommentRequest commentRequest);
 
     PostCommentListResponse getPostCommentsByPostId(UUID postId);
+
+    PostCommentResponse updateComment(Integer commentId, PostCommentRequest commentRequest);
+
+    void deleteComment(Integer commentId);
 }

@@ -27,6 +27,18 @@ public class PostCommentController {
         PostCommentListResponse response = commentService.getPostCommentsByPostId(postId);
         return response;
     }
+
+    @PutMapping("/{commentId}")
+    public PostCommentResponse updatePostComment(@PathVariable Integer commentId, @RequestBody PostCommentRequest commentRequest) {
+        PostCommentResponse response = commentService.updateComment(commentId, commentRequest);
+        return response;
+    }
+
+    @DeleteMapping("/{commentId}")
+    public String deletePostComment(@PathVariable Integer commentId) {
+        commentService.deleteComment(commentId);
+        return "Comment deleted successfully";
+    }
 //
 //    @PatchMapping("/{id}/{userId}")
 //    public PostResponse updateLikeCount(@PathVariable UUID id, @PathVariable UUID userId) {
