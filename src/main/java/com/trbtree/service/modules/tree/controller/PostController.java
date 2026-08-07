@@ -1,6 +1,7 @@
 package com.trbtree.service.modules.tree.controller;
 
 
+import com.trbtree.service.modules.tree.dto.PostCommentRequest;
 import com.trbtree.service.modules.tree.dto.PostListResponse;
 import com.trbtree.service.modules.tree.dto.PostRequest;
 import com.trbtree.service.modules.tree.dto.PostResponse;
@@ -34,6 +35,17 @@ public class PostController {
     public PostListResponse getPosts() {
         PostListResponse responses = postService.getPosts();
         return responses;
+    }
+    @GetMapping("/{id}")
+    public PostResponse getPostById(@PathVariable UUID id) {
+        PostResponse response = postService.getPostById(id);
+        return response;
+    }
+
+    @PatchMapping("/{id}/{userId}")
+    public PostResponse updateLikeCount(@PathVariable UUID id, @PathVariable UUID userId) {
+        PostResponse response = postService.updateLikeCount(id, userId);
+        return response;
     }
 
 

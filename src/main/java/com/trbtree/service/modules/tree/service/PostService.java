@@ -1,8 +1,6 @@
 package com.trbtree.service.modules.tree.service;
 
-import com.trbtree.service.modules.tree.dto.PostListResponse;
-import com.trbtree.service.modules.tree.dto.PostRequest;
-import com.trbtree.service.modules.tree.dto.PostResponse;
+import com.trbtree.service.modules.tree.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,4 +12,9 @@ public interface PostService {
 
     PostListResponse getPostsOfAUser(UUID userId);
     PostListResponse getPosts();
+
+    PostResponse getPostById(UUID id);
+
+    PostResponse updateLikeCount(UUID id, UUID userId);
+
 }

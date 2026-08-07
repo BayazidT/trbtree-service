@@ -21,7 +21,7 @@ public class GlobalCorsFilter {
 //        config.setAllowedOrigins(List.of("http://localhost:3001"));
 //        config.setAllowedOrigins(List.of("https://infotree.trbtree.com"));
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
