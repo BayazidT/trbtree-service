@@ -17,4 +17,7 @@ public interface PostService {
 
     PostResponse updateLikeCount(UUID id, UUID userId);
 
+    PostResponse updatePostById(UUID id, String content);
+
+    void deletePostById(UUID id);
 }
