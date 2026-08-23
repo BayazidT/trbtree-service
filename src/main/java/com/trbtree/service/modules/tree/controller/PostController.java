@@ -42,6 +42,16 @@ public class PostController {
         return response;
     }
 
+    @DeleteMapping("/{id}")
+    public void deletePost(@PathVariable UUID id) {
+        postService.deletePostById(id);
+    }
+
+    @PutMapping("/{id}")
+    public PostResponse updatePostById(@PathVariable UUID id, @RequestBody PostRequest postRequest) {
+        PostResponse response = postService.updatePostById(id, postRequest.getContent());
+        return response;
+    }
     @PatchMapping("/{id}/{userId}")
     public PostResponse updateLikeCount(@PathVariable UUID id, @PathVariable UUID userId) {
         PostResponse response = postService.updateLikeCount(id, userId);

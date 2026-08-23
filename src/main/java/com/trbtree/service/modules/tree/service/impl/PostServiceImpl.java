@@ -65,6 +65,23 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public void deletePostById(UUID id) {
+        Post post = postRepository.findById(id).orElse(null);
+        if (post != null)
+            postRepository.delete(post);
+    }
+
+    @Override
+    public PostResponse updatePostById(UUID id, String content) {
+        Post post = postRepository.findById(id).orElse(null);
+        if (post != null) {
+            post.setContent(content);
+            postRepository.save(post);
+        }
+        return postMapper.toResponse(post);
+    }
+
+    @Override
     public PostResponse updateLikeCount(UUID id, UUID userId) {
         Post post = postRepository.findById(id).orElse(null);
         User user = new User();

@@ -21,6 +21,7 @@ public class AuthController {
 
     @GetMapping("/profile")
     public ResponseEntity<UserProfileResponse> me(Authentication auth) {
+        System.out.println("Profile api called");
         return ResponseEntity.ok(authenticationService.getProfile(auth));
     }
 
