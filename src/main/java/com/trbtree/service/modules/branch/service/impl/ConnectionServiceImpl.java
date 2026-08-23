@@ -11,6 +11,7 @@ import com.trbtree.service.modules.branch.service.ConnectionService;
 import com.trbtree.service.modules.user.entity.User;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +23,20 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public List<ConnectionResponse> getConnections(UUID userId) {
         List<UserConnection> connections = connectionRepository.findAllConnections(userId);
-        return userConnectionMapper.toDTOList(connections);
+        List<UserConnection> newConnections = new ArrayList<>();
+
+        for (UserConnection connection : connections) {
+            if(connection.getRequester().getId().equals(userId)) {
+                UserConnection con = new UserConnection();
+                con.setRequester(connection.getAddressee());
+                newConnections.add(con);
+            }else {
+                UserConnection con = new UserConnection();
+                con.setRequester(connection.getRequester());
+                newConnections.add(con);
+            }
+        }
+        return userConnectionMapper.toDTOList(newConnections);
     }
 
     @Override
