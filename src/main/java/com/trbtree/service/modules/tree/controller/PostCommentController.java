@@ -34,9 +34,9 @@ public class PostCommentController {
         return response;
     }
 
-    @DeleteMapping("/{commentId}")
-    public String deletePostComment(@PathVariable Integer commentId) {
-        commentService.deleteComment(commentId);
+    @DeleteMapping("/{commentId}/post/{postId}")
+    public String deletePostComment(@PathVariable Integer commentId,@PathVariable UUID postId) {
+        commentService.deleteComment(commentId, postId);
         return "Comment deleted successfully";
     }
 //
