@@ -41,6 +41,16 @@ public class PostCommentServiceImpl implements PostCommentService {
     }
 
     @Override
+    public void deleteComment(Integer commentId, UUID postId) {
+        Post post = postRepository.findById(postId).orElse(null);
+        if (post != null) {
+            post.setCommentCount(post.getCommentCount() - 1);
+            postRepository.save(post);
+        }
+        repository.deleteById(commentId);
+    }
+
+    @Override
     public PostCommentListResponse getPostCommentsByPostId(UUID postId) {
         List<PostComment> commentList = repository.findByPostId(postId);
         return PostCommentListResponse.builder()
@@ -48,8 +58,4 @@ public class PostCommentServiceImpl implements PostCommentService {
                 .build();
     }
 
-    @Override
-    public void deleteComment(Integer commentId) {
-        repository.deleteById(commentId);
-    }
 }

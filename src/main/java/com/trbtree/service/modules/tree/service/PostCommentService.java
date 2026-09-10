@@ -13,5 +13,5 @@ public interface PostCommentService {
 
     PostCommentResponse updateComment(Integer commentId, PostCommentRequest commentRequest);
 
-    void deleteComment(Integer commentId);
+    void deleteComment(Integer commentId, UUID postId);
 }
